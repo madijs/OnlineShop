@@ -1,0 +1,145 @@
+.header1 ul{
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    background-color: #B1E0E8;
+}
+ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.first{
+    display: flex;
+    margin-left: 3%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: red;
+}
+
+li a.active {
+    color: red;
+}
+.auth{
+}
+.login{
+    font-weight: normal;
+    font-size: 20px;
+    color: #00D1FF;
+}
+.register{
+    font-weight: normal;
+    font-size: 20px;
+    color: #2D3142;
+}
+.mid{
+    background-color: #D9EBEF;
+    width: 100%;
+    height: 140px;
+    display: flex;
+}
+.logo{
+    margin-top: 1%;
+    margin-left: 4%;
+}
+.header2{
+    width: 100%;
+    background-color: #B1E0E8;
+}
+.navbar{
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+}
+.navbar div{
+    display: flex;
+    color: #4F5D75;
+    font-size: 24px;
+    font-family: Ubuntu;
+    text-align: center;
+    text-decoration: none;
+}
+.navbar .podnav{
+    padding-right: 50px;
+    padding-left: 15px;
+}
+.podnav{
+    padding-top: 15px;
+    padding-bottom: 1%;
+}
+.png{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+.podnav:hover{
+    background-color: white;
+    cursor: pointer;
+}
+.input {
+    margin-left: 50px !important;
+    margin-top: 10% !important;
+    width: 410px !important;
+    box-sizing: border-box !important;
+    border: 2px solid #ccc !important;
+    border-radius: 50px !important;
+    font-size: 16px !important;
+    background-color: transparent !important;
+    background-image: url('../images/searchicon.png');
+    background-position: 10px 10px !important;
+    background-repeat: no-repeat !important;
+    padding: 14px 20px 14px 50px !important;
+}
+.contacts{
+    align-items: center;
+    display: flex;
+    margin-left: 200px;
+}
+.podcontacts{
+    display: block;
+
+}
+.podcontacts div{
+    display: block;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+.mail{
+    color: dimgrey;
+}
+.phone{
+    font-weight: bold;
+}
+.basket{
+    margin-left: 200px;
+    margin-top: 2%;
+    border: 1px solid dimgrey;
+    border-radius: 50%;
+    width: 80px;
+    height: 75px;
+}
+.logo_image{
+    width: 200px;
+    height: 105px;
+}
+.basket_image{
+    width: 60px;
+    height: 50px;
+}
+
+

@@ -1,0 +1,79 @@
+.header2{
+    width: 100%;
+    background-color: #B1E0E8;
+}
+.navbar{
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+}
+.navbar div{
+    display: flex;
+    color: #4F5D75;
+    font-size: 20px;
+    font-family: Ubuntu;
+    text-align: center;
+    text-decoration: none;
+}
+.navbar .podnav{
+    padding-right: 50px;
+    padding-left: 15px;
+}
+.podnav{
+    padding-top: 15px;
+    padding-bottom: 1%;
+}
+.active{
+    background-color: white;
+}
+
+.podnav:hover{
+    background-color: white;
+    cursor: pointer;
+}
+.png{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+.contacts{
+    align-items: center;
+    display: flex;
+    margin-left: 200px;
+}
+.mail{
+    color: dimgrey;
+}
+.phone{
+    font-weight: bold;
+}
+.basket{
+    width: 90px;
+    height: 90px;
+    margin-left: 200px;
+    border: 1px solid dimgrey;
+    border-radius: 50%;
+}
+.logo_image{
+    width: 200px;
+    height: 105px;
+}
+.basket_image{
+    width: 60px;
+    height: 50px;
+}
+.categories{
+    border-right: 1px solid dimgray;
+    margin-right: 79.7%;
+    height: 100%;
+}
+.categories div:hover{
+    background-color: #B1E0E8;
+}
+.elements{
+    top: 31%;
+    left: 29%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}

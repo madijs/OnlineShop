@@ -1,0 +1,35 @@
+.text1div{
+    margin-top: 3%;
+    margin-left: 10%;
+    display: flex;
+}
+.text1{
+    margin-bottom: -5px;
+    color: #4F5D75;
+    font-family: Ubuntu;
+    font-size: 27px;
+    font-weight: bold;
+    text-align: left;
+}
+.text2{
+    margin-left: 6%;
+    margin-top: 0.5%;
+    text-decoration: underline;
+    color: #72E6FF;
+}
+.text2:hover{
+    cursor: pointer;
+}
+.productsList{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+.pagination{
+    display: flex;
+    margin-left: 50%;
+}
+.pagination div{
+    margin-right: 30px;
+}

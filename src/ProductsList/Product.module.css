@@ -1,0 +1,63 @@
+.product{
+    margin: 10px;
+    position: relative;
+    box-shadow: 1px 0.5px 6px 2px #00D1FF;
+    border-radius: 10%;
+    width: 280px;
+    height: 420px;
+}
+.wetka{
+    margin-top: 15%;
+    margin-bottom: 9%;
+    width: 200px;
+    height: 200px;
+}
+.title{
+    position: absolute;
+    color: #707070;
+    font-size: 18px;
+    margin-right: 58%;
+    font-weight: lighter;
+    font-family: Ubuntu;
+}
+.description{
+    font-size: 15px;
+    font-weight: bold;
+    color: #4F5D75;
+}
+.descriptionDiv{
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+.buy{
+    display: flex;
+}
+.price{
+    width: 20%;
+    height: 16px;
+    padding: 10px;
+    font-family: Ubuntu;
+    background-color: #C9F5FF;
+    border-radius: 1%;
+    color: #00D1FF;
+    font-weight: bold;
+    position: absolute;
+    left: 20px;
+    bottom: 29px;
+}
+.basket{
+    position: absolute;
+    right: 12px;
+    bottom: 18px;
+    border: 1px solid #00D1FF;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+}
+.basket_image{
+    color: #00D1FF;
+    width: 32px;
+    height: 30px;
+}

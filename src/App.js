@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import Header from "./Header/Header";
+import { BrowserRouter, Route } from "react-router-dom";
+import Footer from "./Footer/Footer";
+import MainPage from "./MainPage/MainPage"
+import ProductDetails from "./ProductsList/ProductDetails/ProductDetails";
+import SignUp from "./Auth/SignUp";
+import Login from "./Auth/Login";
+import BasketContainer from "./Basket/BasketContainer";
+import MainPageContainer from "./MainPage/MainPageContainer";
+import ProductsContainer from "./ProductsList/ProductsContainer";
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <Route exact path="/" render={()=><MainPageContainer/>} />
+      <Route exact path="/product/:productSlug" render={()=><ProductsContainer/>} />
+      <Route exact path="/register" render={()=><SignUp/>} />
+      <Route exact path="/login" render={()=><Login/>} />
+      <Route exact path="/basket" render={()=><BasketContainer/>}/>
+      <Footer/>
     </div>
   );
 }
