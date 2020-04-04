@@ -4,6 +4,9 @@ const SET_CURRENT_SUBCATEGORY = 'SET-CURRENT-SUBCATEGORY';
 const SET_PRODUCTS_DATA = 'SET-PRODUCTS-DATA';
 const COMPARE_CATEGORY_SLUG ='COMPARE-CATEGORY-SLUG';
 const SET_USERS_DATA='SET-USERS-DATA';
+const SET_VALUE='SET-VALUE';
+const SET_TABS_VISIBLE='SET-TABS-VISIBLE';
+
 
 let initialState = {
     categoriesData:[],
@@ -12,7 +15,9 @@ let initialState = {
     productsData:[],
     isCategoryActive:[],
     usersData:{},
-    isExist:true
+    isExist:true,
+    value:0,
+    visible:false
 };
 
 const mainReducer =(state=initialState,action)=>{
@@ -36,6 +41,7 @@ const mainReducer =(state=initialState,action)=>{
         }
 
         case COMPARE_CATEGORY_SLUG: {
+            console.log(action.slug)
             let stateCopy={...state};
             stateCopy.subCategoriesData=[...state.subCategoriesData];
             stateCopy.currentSubCategory=[...state.currentSubCategory];
@@ -43,7 +49,8 @@ const mainReducer =(state=initialState,action)=>{
             for (let i = 0; i < stateCopy.subCategoriesData.length; i++) {
                 if (!stateCopy.subCategoriesData[i][0].slug.localeCompare(action.slug)) {
                     stateCopy.currentSubCategory = state.subCategoriesData[i];
-                    stateCopy.isExist = false
+                    state.isExist = false;
+                    break
                 }
             }
             return stateCopy;
@@ -68,6 +75,18 @@ const mainReducer =(state=initialState,action)=>{
             stateCopy.usersData = action.data;
             return stateCopy;
         }
+        case SET_VALUE:{
+            let stateCopy = {...state};
+            stateCopy.value=action.value
+            return stateCopy
+        }
+        case SET_TABS_VISIBLE:{
+            console.log(action.bool)
+            let stateCopy = {...state};
+            stateCopy.visible=action.bool
+            return stateCopy
+        }
+
         default:
             return state;
     }
@@ -83,5 +102,9 @@ export const setProductsDataActionCreator=(data)=>({type:SET_PRODUCTS_DATA,data:
 export const compareSlugActionCreator=(slug)=>({type:COMPARE_CATEGORY_SLUG,slug:slug});
 
 export const setUsersDataActionCreator = (data)=>({type:SET_USERS_DATA,data:data});
+
+export const setValueAC =(value)=>({type:SET_VALUE,value:value});
+
+export const setTabsVisibleAC=(bool)=>({type:SET_TABS_VISIBLE,bool:bool})
 
 export default mainReducer;

@@ -2,16 +2,12 @@
     display: flex;
     border:1px solid #ccc;
     width: 80%;
-    height: 700px;
+    height: 600px;
     position: absolute;
-    top: 25%;
-    left: 5%;
+    top: 28%;
+    left: 10%;
     z-index: 1;
     background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 .oplatatext{
     font-size: 30px;
@@ -41,4 +37,34 @@
 .sss{
     width: 50%;
     background-color: #B1E0E8;
+}
+.containerCheck{
+    margin: 5%;
+    padding-bottom: 5%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    border-bottom: 2px solid #00D1FF;
+}
+.imgDiv{
+    width: 100%;
+}
+.checkImg{
+    width: 100px;
+    height: 100px;
+}
+.checkTitle{
+    font-size: 17px;
+    font-family: Ubuntu;
+    font-weight: lighter;
+}
+.exit{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 25px;
+    height: 30px;
+}
+.exitImg{
+    width: 25px;
+    height: 25px;
 }

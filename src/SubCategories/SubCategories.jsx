@@ -12,9 +12,11 @@ const SubCategories =(props)=>{
     };
     let child = props.child.map((el,index)=>(
         <SubsubCategories
+            addListOfProduct={props.addListOfProduct}
             key={index}
             title={el.title}
             child={el.child}
+            setCurrentCategoryToList={props.setCurrentCategoryToList}
         />
     ));
     return(

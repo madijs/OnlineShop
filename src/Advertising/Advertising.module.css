@@ -1,3 +1,4 @@
+
 .gridContainer{
     display: grid;
     grid-template-columns: 57% 43%;
@@ -7,7 +8,7 @@
 }
 .gridContainer2{
     display: grid;
-    grid-template-rows: 225px 225px;
+    grid-template-rows: auto auto;
 }
 .gridItem1{
     margin-right: 10px;
@@ -104,4 +105,54 @@
     right: -122%;
     width: 400px;
     height: 420px;
+}
+@media(max-width: 375px) {
+    .gridContainer{
+        display: block;
+    }
+    .im1{
+        display: none;
+    }
+    .wetka1{
+        display: none;
+    }
+    .wetka2{
+        display: none;
+    }
+    .britva{
+        display: none;
+    }
+    .adv1{
+        height: 100%;
+        margin-left: 0px;
+        margin-top: 0px;
+        padding-top: 20px;
+        font-size: 20px;
+    }
+    .gridItem1{
+        height: 150px;
+        margin-right: 0px;
+    }
+    .gridItem2{
+        height: 150px;
+        margin-bottom: 0px;
+    }
+    .gridItem3{
+        height: 150px;
+    }
+    .line{
+        display: none;
+    }
+    .aaa{
+        margin-top: 20px;
+    }
+    .adv2_text1{
+        font-size: 40px;
+        font-weight: bold;
+        color: #00FFCB;
+    }
+    .adv2_text2{
+        font-size: 15px;
+
+    }
 }

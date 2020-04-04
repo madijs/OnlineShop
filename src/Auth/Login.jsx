@@ -14,9 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios";
 import path from "../settings";
-import {Redirect} from "react-router";
 import style2 from "./Auth.module.css"
-import {NavLink} from "react-router-dom";
 
 function Copyright() {
     return (
@@ -73,26 +71,31 @@ const Login = (props) => {
         email=event.target.email.value;
         password=event.target.password.value;
         event.preventDefault();
-        console.log(email);
- /*       setEmail(event.target.email.value);
-        setPassword(event.target.password.value);*/
-
-
         var data = {
             'email':email,
             'password':password
         };
         console.log(data);
 
-        Axios.post(path+'/auth/token/login', data).then(res => {
-            console.log(res.data.auth_token);
+        Axios.post(path+'/auth/login', data).then(res => {
+            console.log(res.data);
             localStorage.setItem('token', res.data.auth_token);
+            console.log(res.data.count)
+            localStorage.setItem('count',res.data.count);
+            props.setCartCount(localStorage.getItem('count'))
+            localStorage.setItem('birth_day',res.data.birth_day);
+            localStorage.setItem('first_name',res.data.first_name);
+            localStorage.setItem('last_name',res.data.last_name);
+            localStorage.setItem('id',res.data.id);
+            localStorage.setItem('gender',res.data.gender);
             setToken(res.data.auth_token);
+            localStorage.setItem('email', data.email);
             console.log(token);
-            props.store.setToken(false)
-           // setToken(res.data.key);
+            if (localStorage.getItem('token')){
+                window.location.href='/'
+            }
         }).catch(err => {
-            console.log(err.message)
+            console.log(err.response)
         });
     };
     const handleLogout=(event)=>{
@@ -108,9 +111,6 @@ const Login = (props) => {
 
     return (
         <div>
-        {localStorage.getItem('token') &&
-        <Redirect to="/"/>
-}
             {!isAlreadyAuthenticated &&
             <Grid container component="main" className={classes.root}>
                 <CssBaseline/>

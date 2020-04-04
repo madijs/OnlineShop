@@ -5,7 +5,7 @@ const Specification=(props)=>{
         <div className={style.specificationContainer}>
             <div className={style.parametr}>
                 <div className={style.parametr2}>
-                {props.parametr}
+                {props.parameter}
                 </div>
             </div>
         <div className={style.value}>

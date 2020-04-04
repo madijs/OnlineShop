@@ -1,16 +1,29 @@
 import React from "react";
 import {connect} from "react-redux";
-import {AddSummaActionCreator, AddToBasketActionCreator, RemoveSummaActionCreator} from "../redux/basket-reducer";
+import {
+    AddSummaActionCreator,
+    AddToBasketActionCreator,
+    ChangeQuantityActionCreator, RemoveItemFromBasketActionCreator,
+    RemoveSummaActionCreator
+} from "../redux/basket-reducer";
 import Basket from "./Basket";
+import {cartCounterActionCreator} from "../redux/users-reducer";
 
 
 let mapStateToProps=(state)=>{
     return{
-        basketPage:state.basketPage
+        basketPage:state.basketPage,
+        cnt:state.signUpPage.cnt
     }
 };
 let mapDispatchToProps=(dispatch)=>{
     return{
+        // removeFromBasket:(id)=>{
+        //     dispatch(RemoveItemFromBasketActionCreator(id))
+        // },
+        setCartCount:(cnt)=>{
+            dispatch(cartCounterActionCreator(cnt))
+        },
         addToBasket:(data)=>{
             dispatch(AddToBasketActionCreator(data));
         },
@@ -24,6 +37,9 @@ let mapDispatchToProps=(dispatch)=>{
         removeSumma:(sum)=>{
             console.log(sum);
             dispatch(RemoveSummaActionCreator(sum));
+        },
+        changeQuantity:(id,quantity)=>{
+            dispatch(ChangeQuantityActionCreator(id,quantity))
         }
     }
 }

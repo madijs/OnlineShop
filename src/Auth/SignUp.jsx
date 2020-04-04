@@ -15,6 +15,71 @@ import Container from '@material-ui/core/Container';
 import style2 from './Auth.module.css'
 import Axios from "axios";
 import path from "../settings";
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import {signUpDataBirthDateActionCreator} from "../redux/users-reducer";
+
+export function MaterialUIPickers(props) {
+    // The first commit of Material-UI
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+    const fillDate=(date)=>{
+        let temp= date + "";
+
+        if(temp.length===1){
+            console.log('0'+temp);
+            return '0' + temp;
+        }
+
+        return temp;
+    };
+
+    const handleDateChange = date => {
+
+        
+        setSelectedDate(date);
+
+        try {
+            console.log(date);
+            console.log(date.getFullYear());
+            props.setBirthDate(date.getFullYear() + '-' + fillDate(date.getMonth()) + '-' + fillDate(date.getDay()))
+        }catch (e) {
+
+        }
+    };
+
+    return (
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+                <KeyboardDatePicker
+                    minDate='01-01-1000'
+                    inputVariant="outlined"
+                    margin="normal"
+                    id="date-picker-dialog"
+                    label="Date picker dialog"
+                    format="dd/MM/yyyy"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                />
+            </Grid>
+        </MuiPickersUtilsProvider>
+    );
+}
+
+
+
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -47,10 +112,65 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    // formControl: {
+    //     margin: theme.spacing(1),
+    //     minWidth: 150,
+    // },
+    // selectEmpty: {
+    //     marginTop: theme.spacing(2),
+    // },
 }));
 
 
-export default function SignUp() {
+export function NativeSelects(props) {
+    const classes = useStyles();
+    const [state, setState] = React.useState({
+        gender: '',
+        name: 'hai',
+    });
+
+    const inputLabel = React.useRef(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
+
+    const handleChange = name => event => {
+        setState({
+            ...state,
+            [name]: event.target.value,
+        });
+        props.setGender(event.target.value)
+    };
+
+    return (
+        <div>
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                    Пол
+                </InputLabel>
+                <Select
+                    native
+                    value={state.gender}
+                    onChange={handleChange('gender')}
+                    labelWidth={labelWidth}
+                    inputProps={{
+                        name: 'gender',
+                        id: 'outlined-age-native-simple',
+                    }}
+                >
+                    <option value="" />
+                    <option value={'М'}>Мужчина</option>
+                    <option value={'Ж'}>Женщина</option>
+                </Select>
+            </FormControl>
+        </div>
+    );
+}
+
+
+
+export default function SignUp(props) {
     /*const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [token,setToken] = useState("");*/
@@ -70,20 +190,17 @@ export default function SignUp() {
         let data = {
             'email':email,
             'password':password,
-            'firstname':firstName,
-            'surname':surName,
+            'first_name':firstName,
+            'last_name':surName,
         };
-        console.log(data);
-        Axios.post(path+'/api/register', data).then(res => {
-            console.log(res.data);
-            localStorage.setItem('token', res.data.key);
-/*
-            setToken(res.data.key);
-*/
+        props.setFormsData(data);
 
-        }).catch(err => {
-            console.log(err.message)
-        });
+        // Axios.post(path+'/api/register', data).then(res => {
+        //     console.log(res.data);
+        //     // localStorage.setItem('token', res.data.key);
+        // }).catch(err => {
+        //     console.log(err.message)
+        // });
     };
 
 
@@ -126,6 +243,13 @@ export default function SignUp() {
                                 autoComplete="lname"
                             />
                         </Grid>
+                        <Grid container spacing={1}>
+                               <MaterialUIPickers setBirthDate={props.setBirthDate}/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <NativeSelects setGender={props.setGender}/>
+                        </Grid>
+
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"

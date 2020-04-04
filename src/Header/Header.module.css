@@ -1,3 +1,30 @@
+@media(max-width: 375px){
+    .glav{
+        max-width: 375px;
+    }
+    .mid{
+        display: flex;
+        justify-content: space-between;
+    }
+    .header1{
+       display: none;
+    }
+    .contacts{
+        display: none;
+    }
+    .podcontacts{
+        display: none;
+    }
+    .phone{
+        display: none;
+    }
+    .phoneIcon{
+        display: none;
+    }
+    .mail{
+        display: none;
+    }
+}
 .header1 ul{
     list-style-type: none;
     margin: 0;
@@ -49,10 +76,11 @@ li a.active {
 .mid{
     background-color: #D9EBEF;
     width: 100%;
-    height: 140px;
+    height: 10%;
     display: flex;
 }
 .logo{
+    width: 15%;
     margin-top: 1%;
     margin-left: 4%;
 }
@@ -91,7 +119,7 @@ li a.active {
     cursor: pointer;
 }
 .input {
-    margin-left: 50px !important;
+    margin-left: 0px !important;
     margin-top: 10% !important;
     width: 410px !important;
     box-sizing: border-box !important;
@@ -107,39 +135,42 @@ li a.active {
 .contacts{
     align-items: center;
     display: flex;
-    margin-left: 200px;
+    margin-left: 2%;
 }
 .podcontacts{
     display: block;
-
 }
 .podcontacts div{
     display: block;
-    padding-bottom: 5px;
+    padding-bottom: 1px;
     padding-left: 10px;
     padding-top: 5px;
 }
+.phoneIcon{
+    width:100%;
+}
 .mail{
+    width: 100%;
     color: dimgrey;
 }
 .phone{
+    width: 100%;
     font-weight: bold;
 }
 .basket{
-    margin-left: 200px;
-    margin-top: 2%;
-    border: 1px solid dimgrey;
-    border-radius: 50%;
-    width: 80px;
-    height: 75px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.basket div{
 }
 .logo_image{
-    width: 200px;
-    height: 105px;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .basket_image{
-    width: 60px;
-    height: 50px;
+    width: 50px;
+    height: auto;
 }
 
 

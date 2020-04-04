@@ -3,6 +3,8 @@ import style from './BasketItem.module.css'
 import Badge from "@material-ui/core/Badge/Badge";
 import {withStyles} from "@material-ui/core";
 import {AddSummaActionCreator, RemoveSummaActionCreator} from "../redux/basket-reducer";
+import Axios from "axios";
+import path from "../settings";
 
 const StyledBadge = withStyles(theme => ({
     badge: {
@@ -16,6 +18,15 @@ const StyledBadge = withStyles(theme => ({
     },
 }))(Badge);
 
+var style2={
+    backgroundColor:'red',
+    padding: '10px 12px',
+    color:'white',
+    fontWeight:'lighet',
+    fontFamily:'Ubuntu',
+    fontSize:'14px'
+}
+
 const BasketItem = (props)=>{
     const[quantity,setQuantity]=useState(props.quantity);
     const[price,setPrice]=useState(props.box_quantity*props.quantity*props.price);
@@ -27,6 +38,7 @@ const BasketItem = (props)=>{
         let sum=props.box_quantity*1*props.price;
         setPrice(price+sum);
         props.addSumma(sum)
+        props.changeQuantity(props.id,true)
         // props.dispatch(AddSummaActionCreator(sum));
 
     };
@@ -36,19 +48,29 @@ const BasketItem = (props)=>{
             let sum=props.box_quantity*1*props.price;
             setPrice(price-sum);
             props.removeSumma(sum)
+            props.changeQuantity(props.id,false)
             // props.dispatch(RemoveSummaActionCreator(sum));
         }
-    }
-    let changeValue=(e)=>{
-        let n = e.target.value;
-        setQuantity(n);
-        let sum= props.box_quantity*e.target.value*props.price;
-        setPrice(sum)
-        if(e.target.value===''){
-            setQuantity(1)
-            let sum=props.box_quantity*1*props.price;
-            setPrice(sum);
-        }
+    };
+
+    let deleteItem=()=>{
+        Axios.delete(path+'/cart/'+props.prosto_id+'/',{
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('token')
+            }
+        }).then(res=>{
+            Axios.get(path+'/cart/count/',{
+                headers: {
+                    'Authorization': 'Token ' + localStorage.getItem('token')
+                }
+            }).then(res=>{
+                props.setCartCount(res.data.count);
+                localStorage.setItem('count',res.data.count);
+               // props.removeFromBasket(props.prosto_id);
+                window.location.href='/basket';
+            });
+        })
+
     }
 
     return(
@@ -66,6 +88,9 @@ const BasketItem = (props)=>{
             </div>
             <div className={style.summa}>
                 <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} тг</div>
+            </div>
+            <div>
+                <button onClick={deleteItem} style={style2}>Удалить</button>
             </div>
         </div>
     )

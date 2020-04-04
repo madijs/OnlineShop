@@ -4,7 +4,8 @@ const SET_CATEGORY_DATA = "SET-CATEGORY-DATA";
 let initialState = {
     productDetailsData:[],
     categoryData:{},
-    delimetrPrice:''
+    delimetrPrice:'',
+    oldDelimetrPrice:''
 };
 
 const productDetailsReducer = (state=initialState,action)=>{
@@ -12,7 +13,7 @@ const productDetailsReducer = (state=initialState,action)=>{
         case SET_PRODUCTDETAILS_DATA: {
             let stateCopy={
                 ...state,
-                delimetrPrice:action.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                delimetrPrice:action.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "),
             };
             stateCopy.productDetailsData = action.data;
             // stateCopy.delimetrPrice = action.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");

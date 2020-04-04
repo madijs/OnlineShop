@@ -8,7 +8,7 @@ import Gallery from "./Gallery";
 import check from '../../images/check.png'
 import {setProductDetailsActionCreator,setProductCategoryActionCreator} from "../../redux/productDetails-reducer";
 import './PD.css';
-
+import {Redirect} from "react-router";
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,10 +16,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Container from "@material-ui/core/Container";
 import Specification from "./Specification";
-import index from "react-alice-carousel";
-import {NavLink} from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 function TabPanel(props) {
@@ -82,7 +80,7 @@ export function NavTabs(props) {
             <Specification
                 key={index}
                 value={el.value}
-                parametr={el.parametr}
+                parameter={el.parameter}
             />
         ))
     }catch (e) {
@@ -135,16 +133,20 @@ export const ContinueOrNot=()=>{
         justifyContent:'center',
     };
     const history = useHistory();
+    let {productSlug} = useParams();
     let redirectToBasket=()=>{
-        let path = '/basket';
-        history.push(path)
+        history.push('/basket')
     };
+    let notRedirect=()=> {
+        let path = '/product/' + `${productSlug}`;
+        window.location.href=path;
+    }
     return(
         <div>
             <div>Хотите перейти в корзину?</div>
             <div style={style2}>
                 <div><button onClick={redirectToBasket}>Перейти</button></div>
-                <div><button>Остаться</button></div>
+                <div><button onClick={notRedirect}>Остаться</button></div>
             </div>
         </div>
     )
@@ -153,6 +155,20 @@ export const ContinueOrNot=()=>{
 
 
 const ProductDetails=(props)=>{
+    const [state2, setState2] = React.useState({
+        open: false,
+        vertical: 'top',
+        horizontal: 'center',
+    });
+    const { vertical, horizontal, open } = state2;
+
+    const handleClick = newState => () => {
+        setState2({ open: true, ...newState });
+    };
+
+    const handleClose = () => {
+        setState2({ ...state2, open: false });
+    };
     const media="http://178.62.252.32";
     const[state,setState]=useState({
         data: {
@@ -163,8 +179,9 @@ const ProductDetails=(props)=>{
     const[kol_vo_el,setKolvo] = useState('');
     const[summa,setSumma] = useState('');
     const[quantity,setQuantity]=useState('');
-
     const[show,setShow]=useState(false);
+
+    const[skidka,setSkidka]=useState(0);
 
     let {productSlug} = useParams();
     const history = useHistory();
@@ -172,6 +189,11 @@ const ProductDetails=(props)=>{
         Axios.get(path + "/product/" + productSlug).then(res => {
             console.log(res.data);
             props.setProductDetails(res.data);
+            let temp2 = (res.data.old_price-res.data.price);
+            console.log(temp2)
+            let skidka = Math.round(temp2*100/res.data.old_price);
+            console.log(skidka)
+            setSkidka(skidka)
             // props.dispatch(setProductDetailsActionCreator(res.data));
             let aState = state.data;
             aState.images = res.data.images;
@@ -192,9 +214,10 @@ const ProductDetails=(props)=>{
             console.log(res.data);
             props.setProductCategory(res.data.category)
             // props.dispatch(setProductCategoryActionCreator(res.data.category))
-
         })
+
     },[]);
+    console.log(props.productDetailsPage.productDetailsData.old_price)
     let x = "";
     let y = "";
     try {
@@ -231,16 +254,27 @@ const ProductDetails=(props)=>{
     let data={
         'quantity':quantity,
         'products':props.productDetailsPage.productDetailsData.id,
-    }
+    };
 
-    let addToBasket=()=>{
+    let addToBasket=newState=>()=>{
         if (localStorage.getItem('token')) {
             if (quantity != 0) {
                 Axios.post(path + '/cart/', data, {
                     headers: {
                         'Authorization': 'Token ' + localStorage.getItem('token')
                     }
+                }).then(res=>{
+                    Axios.get(path+'/cart/count/',{
+                        headers: {
+                            'Authorization': 'Token ' + localStorage.getItem('token')
+                        }
+                    }).then(res=>{
+                        props.setCartCount(res.data.count)
+                        localStorage.setItem('count',res.data.count)
+                    });
+                    setState2({ open: true, ...newState });
                 });
+
                 console.log(data);
                 setShow(true);
             } else {
@@ -270,7 +304,7 @@ const ProductDetails=(props)=>{
             <div style={nonFilter}>
                 {show ? <ContinueOrNot/> : null}
             </div>
-        <div style={show? blur:stil}>
+        <div style={stil}>
 
             <BreadCrumb breadCrumb1={props.productDetailsPage.categoryData.title} breadCrumb2={x} breadCrumb3={y} />
             <div className="row_wrapper">
@@ -290,13 +324,13 @@ const ProductDetails=(props)=>{
                             <span className="priceBox">Цена за коробку:</span>
                         </div>
                         <div className="oldPrice">
-                            50 000 тг
+                            {props.productDetailsPage.productDetailsData.old_price}
                         </div>
                         <div className="newPrice">
                             {props.productDetailsPage.delimetrPrice} тг
                         </div>
                         <div className="discount">
-                            Скидка: 20%
+                            Скидка:{skidka}%
                         </div>
                     </div>
                     <div className="kolvo">
@@ -334,14 +368,23 @@ const ProductDetails=(props)=>{
                         </div>
                     </div>
                     <div>
-                        <button onClick={addToBasket} className="vkorzinu"><span className="vkorzinutext">в Корзину</span></button>
+                        <button onClick={addToBasket({ vertical: 'top', horizontal: 'right' })} className="vkorzinu"><span className="vkorzinutext">в Корзину</span></button>
                     </div>
                 </div>
             </div>
+            <Snackbar
+                style={{backgroundColor:'green !important'}}
+                anchorOrigin={{ vertical, horizontal }}
+                key={`${vertical},${horizontal}`}
+                open={open}
+                onClose={handleClose}
+                message="Сделано!=)"
+            />
             <NavTabs specification={props.productDetailsPage.productDetailsData.specification} description={props.productDetailsPage.productDetailsData.description}/>
         </div>
         </div>
     )
  };
+
 
 export default ProductDetails;

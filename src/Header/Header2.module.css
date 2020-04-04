@@ -16,11 +16,11 @@
     text-decoration: none;
 }
 .navbar .podnav{
-    padding-right: 50px;
-    padding-left: 15px;
+    padding-right:3%;
+    padding-left:1%;
 }
 .podnav{
-    padding-top: 15px;
+    padding-top: 1%;
     padding-bottom: 1%;
 }
 .active{
@@ -76,4 +76,37 @@
     position: absolute;
     display: grid;
     grid-template-columns: auto auto auto auto;
+}
+.buttonMenu{
+    display: none;
+}
+.searchh{
+    display: none ;
+}
+@media(max-width: 375px) {
+    .header2{
+        max-width: 375px;
+    }
+    .buttonMenu{
+        display: block;
+    }
+    .searchh{
+        display: block;
+        margin-right: 5%;
+        width: 200px;
+    }
+    .searchh input{
+        width: 100%;
+    }
+    .navbar{
+        height: 30px;
+        justify-content: space-between;
+    }
+    .podnav{
+        display: none !important;
+    }
+    .png{
+        height: 18px;
+        width: 18px;
+    }
 }

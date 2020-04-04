@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from "react";
+import { useHistory } from 'react-router-dom';
 import Axios from 'axios'
 import path from "../settings";
-import {AddSummaActionCreator, AddToBasketActionCreator} from "../redux/basket-reducer";
 import BasketItem from "./BasketItem";
 import style from './BasketItem.module.css'
+import Oplata from "./Oplata4ek/Oplata";
 const Basket =(props)=>{
     const media="http://178.62.252.32";
     const[state,setState]=useState(false);
+    const history = useHistory();
     useEffect(()=>{
+        if(localStorage.getItem('token')){
         Axios.get(path+'/cart/',
             {headers:{
                     'Authorization':'Token ' + localStorage.getItem('token')
@@ -24,17 +27,25 @@ const Basket =(props)=>{
             props.setItogovayaSumma(sum);
             // props.dispatch(AddSummaActionCreator(sum))
         });
+        }else {
+            let path ='/login'
+            history.push(path)
+        }
     },[]);
     let basket_items = props.basketPage.basketData.map((el,index)=>(
         <BasketItem
-            id={el.id}
+            setCartCount={props.setCartCount}
+           // removeFromBasket={props.removeFromBasket}
+            id={el.product.id}
+            prosto_id={el.id}
             key={index}
             // dispatch={props.dispatch} //vmesto dispatch kidayu s containera
             addSumma={props.addSumma}
             removeSumma={props.removeSumma}
+            changeQuantity={props.changeQuantity}
             title={el.product.title}
             price={el.product.price}
-            images={media+el.product.images[0].image}
+            images={media+el.product.image}
             category={el.product.category}
             box_quantity={el.product.box_quantity}
             quantity={el.quantity}
@@ -51,12 +62,27 @@ const Basket =(props)=>{
         filter: 'blur(8px)',
         opacity:'0.5',
         webkitFilter:'blur(8px)'
-    }
+    };
+
+    let paymentOrder=()=>{
+        console.log(props.basketPage.quantity)
+        Axios.post(path+'/cart/bulk/',props.basketPage.quantity,{
+            headers:{
+                'Authorization': 'Token '+localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            }
+        }).then(res=>{
+            console.log(res.data)
+            // window.location = res.data.payment_page_url
+        })
+        setState(true);
+    };
+
     return(
         <div>
-        {/*<div style={state? style3:style2}>*/}
-        {/*    <Oplata/>*/}
-        {/*</div>*/}
+        <div style={state? style3:style2}>
+            <Oplata basketPage={props.basketPage}/>
+        </div>
         <div style={state? blur:style3}>
             <div className={style.basket_list}>
             <div className={style.basketText}>Корзина</div>
@@ -83,7 +109,7 @@ const Basket =(props)=>{
                 <div className={style.endPrice}>{props.basketPage.summa.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</div>
             </div>
             <div className={style.btnList}>
-                <div><button onClick={()=>setState(true)} className={style.oplataButton}>Оплатить</button></div>
+                <div><button onClick={paymentOrder} className={style.oplataButton}>Оплатить</button></div>
                 <div><button className={style.continueBtn}>Продолжить покупки</button></div>
             </div>
         </div>

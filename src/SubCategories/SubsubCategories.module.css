@@ -16,6 +16,10 @@
     font-size: 18px;
     font-weight: bold;
 }
+.subcategory:hover{
+    color:red;
+    cursor: pointer;
+}
 .child{
     color: #4F5D75;
     margin-top: 25px;

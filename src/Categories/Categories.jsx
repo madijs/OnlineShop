@@ -25,7 +25,9 @@ const Categories =(props)=>{
     const getSlug=()=>{
         props.state.isExist=true;
         props.compareSlugFunction(props.slug);
+        console.log(props.state);
         // props.dispatch(compareSlugActionCreator(props.slug)); //compareSlugFunction
+        console.log(props.state.isExist);
         if(props.state.isExist) {
             Axios.get(path + '/category/' + props.slug).then(res => {
                 console.log("REQUEST");

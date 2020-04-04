@@ -5,8 +5,11 @@ import style from "./SubsubCategories.module.css"
 const SubsubCategories = (props)=>{
     let child = props.child.map((el,index)=>(
         <Sub3Categories
+            addListOfProduct={props.addListOfProduct}
             key={index}
+            slug={el.slug}
             title={el.title}
+            setCurrentCategoryToList={props.setCurrentCategoryToList}
         />
     ))
     return(

@@ -3,7 +3,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import style from './ProductsList.module.css'
 import Product from "./Product";
+import { useHistory } from 'react-router-dom';
+
 const ProductsList = (props)=>{
+    const history = useHistory();
     var style2={
     backgroundColor: '#00D1FF',
     color: '#00D1FF',
@@ -50,16 +53,20 @@ const ProductsList = (props)=>{
             title={el.title}
             slug={el.slug}
             price={el.price}
-            images= {media + el.images[0].image}
+            images= {media + el.image}
             category={el.category}
         />
     ));
+    let goTolist=()=>{
+        let path = 'list'
+        history.push(path)
+    }
 
     return(
         <div>
             <div className={style.text1div}>
                 <span className={style.text1}>Популярные Товары</span>
-                <span className={style.text2}>Смотреть все</span>
+                <span onClick={goTolist} className={style.text2}>Смотреть все</span>
                 <div className={style.pagination}>
 
                     {/*<div><img style={style3} src={left}/></div>*/}
