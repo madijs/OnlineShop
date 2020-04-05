@@ -44,7 +44,7 @@ export function MaterialUIPickers(props) {
         try {
             console.log("month "+(date.getMonth()+1));
             console.log("day "+date.getDate());
-            localStorage.setItem('birth_day',fillDate( date.getFullYear()+ '-' + fillDate((date.getMonth()+1)) + '-' + date.getDate()))
+            localStorage.setItem('birth_day',date.getFullYear()+ '-' + fillDate((date.getMonth()+1)) + '-' + fillDate(date.getDate()))
            // props.setBirthDate(date.getFullYear() + '-' + fillDate(date.getMonth()) + '-' + fillDate(date.getDay()))
         }catch (e) {
 

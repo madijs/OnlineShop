@@ -5,8 +5,8 @@ import path from "../settings";
 import BasketItem from "./BasketItem";
 import style from './BasketItem.module.css'
 import Oplata from "./Oplata4ek/Oplata";
+import media from "../media";
 const Basket =(props)=>{
-    const media="http://178.62.252.32";
     const[state,setState]=useState(false);
     const history = useHistory();
     useEffect(()=>{

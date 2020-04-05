@@ -131,17 +131,24 @@ export const ContinueOrNot=()=>{
         display: 'flex',
         justifyContent:'center',
     };
+    var style1={
+        width:"100%",
+        height: "100%",
+        boxShadow:"1px 6px 14px 1px",
+        paddingTop:"30%"
+    }
     const history = useHistory();
     let {productSlug} = useParams();
     let redirectToBasket=()=>{
-        history.push('/basket')
+        console.log("sss")
+        window.location.href='/basket'
     };
     let notRedirect=()=> {
         let path = '/product/' + `${productSlug}`;
         window.location.href=path;
     }
     return(
-        <div>
+        <div style={style1}>
             <div>Хотите перейти в корзину?</div>
             <div style={style2}>
                 <div><button onClick={redirectToBasket}>Перейти</button></div>
@@ -187,11 +194,15 @@ const ProductDetails=(props)=>{
         Axios.get(path + "/product/" + productSlug).then(res => {
             console.log(res.data);
             props.setProductDetails(res.data);
-            let temp2 = (res.data.old_price-res.data.price);
-            console.log(temp2)
-            let skidka = Math.round(temp2*100/res.data.old_price);
-            console.log(skidka)
-            setSkidka(skidka)
+            if(res.data.old_price!=null) {
+                let temp2 = (res.data.old_price - res.data.price);
+                console.log(temp2)
+                let skidka = Math.round(temp2 * 100 / res.data.old_price);
+                console.log(skidka)
+                setSkidka(skidka)
+            }else{
+                setSkidka(0)
+            }
             // props.dispatch(setProductDetailsActionCreator(res.data));
             let aState = state.data;
             aState.images = res.data.images;
@@ -215,7 +226,6 @@ const ProductDetails=(props)=>{
         })
 
     },[]);
-    console.log(props.productDetailsPage.productDetailsData.old_price)
     let x = "";
     let y = "";
     try {
@@ -294,7 +304,13 @@ const ProductDetails=(props)=>{
     };
     let nonFilter={
         filter: 'none',
-        webkitFilter: 'none'
+        webkitFilter: 'none',
+        position:'absolute',
+        marginTop:'15%',
+        marginLeft: '40%',
+        width: "20%",
+        height:"20%",
+        zIndex:1,
     }
 
     return (
@@ -326,9 +342,11 @@ const ProductDetails=(props)=>{
                         <div className="newPrice">
                             {props.productDetailsPage.delimetrPrice} тг
                         </div>
-                        <div className="discount">
-                            Скидка:{skidka}%
-                        </div>
+                        {skidka>0 &&
+                            <div className="discount">
+                                Скидка:{skidka}%
+                            </div>
+                        }
                     </div>
                     <div className="kolvo">
                         <span>Кол-во в коробке: {props.productDetailsPage.productDetailsData.box_quantity}</span>
@@ -369,16 +387,15 @@ const ProductDetails=(props)=>{
                     </div>
                 </div>
             </div>
+            <NavTabs specification={props.productDetailsPage.productDetailsData.specification} description={props.productDetailsPage.productDetailsData.description}/>
+        </div>
             <Snackbar
-                style={{backgroundColor:'green !important'}}
                 anchorOrigin={{ vertical, horizontal }}
                 key={`${vertical},${horizontal}`}
                 open={open}
                 onClose={handleClose}
                 message="Сделано!=)"
             />
-            <NavTabs specification={props.productDetailsPage.productDetailsData.specification} description={props.productDetailsPage.productDetailsData.description}/>
-        </div>
         </div>
     )
  };

@@ -6,14 +6,33 @@ import style from "./listOfProduct.module.css"
 import RangeSlider from "./Slider";
 import { useParams} from "react-router";
 import media from "../../media";
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
-
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 200,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
 const ListOfProduct = (props)=>{
-    console.log(props.listProductsPage.productsData)
+    console.log(props.listProductsPage.productsData);
+    const classes = useStyles();
+    const [state, setState] = React.useState({
+        sort: '',
+        name: 'hai',
+    });
     let {categorySlug} = useParams();
     useEffect(()=>{
         console.log(categorySlug)
-        Axios.get(path+'/product/?category='+categorySlug).then(res=>{
+        Axios.get(path+'/product/?category='+categorySlug+"&ordering=title").then(res=>{
             props.addListOfProduct(res.data);
         })
         console.log(props.listProductsPage.allProductsData);
@@ -39,6 +58,22 @@ const ListOfProduct = (props)=>{
                 props.setCurrentProducts(res.data)
             })
         }
+    const handleChange = (event) => {
+            if(event.target.value!="") {
+                console.log(event.target.value)
+                Axios.get(path + "/product/?category=" + categorySlug + "&ordering=" + event.target.value).then(res => {
+                    console.log(res.data)
+                    props.setCurrentProducts(res.data)
+                })
+            }
+        const sort = event.target.name;
+        console.log(sort)
+        setState({
+            ...state,
+            [sort]: event.target.value,
+        });
+    };
+
     return(
         <div className={style.container}>
             <div className={style.container1}>
@@ -56,7 +91,28 @@ const ListOfProduct = (props)=>{
                 <div>{props.listProductsPage.allProductsData.maxPrice}</div>
                 </div>
                 <div><button onClick={searchFilter}>Поиск</button></div>
-                <div><button>Сортировать по цене</button></div>
+                <div>
+                    <FormControl variant="filled" className={classes.formControl}>
+                        <InputLabel htmlFor="filled-age-native-simple">Сортировать</InputLabel>
+                        <Select
+                            style={{backgroundColor:"white"}}
+                            native
+                            value={state.age}
+                            onChange={handleChange}
+                            inputProps={{
+                                sort: 'sort',
+                                id: 'filled-age-native-simple',
+                            }}
+                        >
+                            <option value={"title"}>по алфавиту от А до Я</option>
+                            <option value={"likes"}>по популярности</option>
+                            <option value={"price"}>по возрастанию цены</option>
+                            <option value={"-price"}>по убыванию цены</option>
+                            <option value={"-created"}>по самые новые</option>
+                            <option value={"created"}>по самые старые</option>
+                        </Select>
+                    </FormControl>
+                </div>
                 </div>
             <div className={style.container2}>
             {el}
