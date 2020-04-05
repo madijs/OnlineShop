@@ -1,24 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import style from './Header.module.css'
+import React, {useState} from 'react'
 import {NavLink} from "react-router-dom";
-import phoneIcon from '../images/phoneIcon.png'
 import Badge from '@material-ui/core/Badge';
 import { useHistory } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import basketIcon from '../images/basketIc.png'
-import logo from '../images/logo_shop_blue.png'
 import path from "../settings";
 import Axios from "axios";
-import userIcon from "../images/userIcon.png"
-import Grid from '@material-ui/core/Grid';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -27,13 +17,8 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import PropTypes from 'prop-types';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
 import VerticalTabs from "./VerticalTabs";
 
 // const StyledBadge = withStyles(theme => ({
@@ -414,7 +399,7 @@ function PrimarySearchAppBar(props) {
             <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
                     <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
+                        <ShoppingCartIcon/>
                     </Badge>
                 </IconButton>
                 <p>Корзина</p>
@@ -471,9 +456,9 @@ function PrimarySearchAppBar(props) {
                         {/*        <MailIcon />*/}
                         {/*    </Badge>*/}
                         {/*</IconButton>*/}
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={props.cnt} color="secondary">
-                                <NotificationsIcon />
+                        <IconButton onClick={()=>history.push('/basket')} aria-label="show 17 new notifications" color="inherit">
+                            <Badge badgeContent={localStorage.getItem('count')} color="secondary">
+                                <ShoppingCartIcon />
                             </Badge>
                         </IconButton>
                         <IconButton

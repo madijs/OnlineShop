@@ -27,13 +27,6 @@ const Product = (props)=>{
             <div className={style.descriptionDiv}><span className={style.description}>{props.title}</span></div>
             <div className={style.buy}>
             <div className={style.price}>{props.price}тг</div>
-            <div className={style.basket}>
-                <IconButton>
-                    <StyledBadge badgeContent={0} color="primary">
-                        <img className={style.basket_image} src={basketIcon}/>
-                    </StyledBadge>
-                </IconButton>
-            </div>
             </div>
         </div>
         </NavLink>

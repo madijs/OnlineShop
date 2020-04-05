@@ -4,25 +4,23 @@ import "react-multi-carousel/lib/styles.css";
 import style from './ProductsList.module.css'
 import Product from "./Product";
 import { useHistory } from 'react-router-dom';
+import media from "../media";
 
 const ProductsList = (props)=>{
     const history = useHistory();
     var style2={
-    backgroundColor: '#00D1FF',
+    backgroundColor: '#ccc',
     color: '#00D1FF',
     height: '2px',
         width:'86%'
     };
-    var style3={
-        width: '20px',
-        height: '25px'
-    };
+
 
     var carousel={
         padding:"100px"
     }
 
-    const media="http://178.62.252.32";
+
 
 
     const responsive = {
@@ -68,9 +66,6 @@ const ProductsList = (props)=>{
                 <span className={style.text1}>Популярные Товары</span>
                 <span onClick={goTolist} className={style.text2}>Смотреть все</span>
                 <div className={style.pagination}>
-
-                    {/*<div><img style={style3} src={left}/></div>*/}
-                    {/*<div><img style={style3} src={right}/></div>*/}
                 </div>
             </div>
             <div>

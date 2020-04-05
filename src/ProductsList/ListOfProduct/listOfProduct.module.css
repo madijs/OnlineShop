@@ -13,7 +13,7 @@
     margin-right: auto;
     margin-bottom: 10%;
     position: relative;
-    box-shadow: 1px 0.5px 6px 2px #00D1FF;
+    box-shadow: 1px 0.5px 6px 2px #3f51b5;
     border-radius: 10%;
     width: 300px;
     height: 440px;
@@ -26,7 +26,7 @@
 }
 .title{
     position: absolute;
-    color: #707070;
+    color: #3f51b5;
     font-size: 18px;
     margin-right: 58%;
     font-weight: lighter;
@@ -35,7 +35,9 @@
 .description{
     font-size: 15px;
     font-weight: bold;
-    color: #4F5D75;
+    color: #3f51b5;
+    text-decoration: none !important;
+    text-underline: none !important;;
 }
 .descriptionDiv{
     text-align: justify;
@@ -53,7 +55,7 @@
     font-family: Ubuntu;
     background-color: #C9F5FF;
     border-radius: 1%;
-    color: #00D1FF;
+    color: #3f51b5;
     font-weight: bold;
     position: absolute;
     left: 20px;

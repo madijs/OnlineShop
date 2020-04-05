@@ -5,7 +5,7 @@
 }
 .text1{
     margin-bottom: -5px;
-    color: #4F5D75;
+    color: #3f51b5;
     font-family: Ubuntu;
     font-size: 27px;
     font-weight: bold;
@@ -15,7 +15,7 @@
     margin-left: 6%;
     margin-top: 0.5%;
     text-decoration: underline;
-    color: #72E6FF;
+    color: #3f51b5;
 }
 .text2:hover{
     cursor: pointer;

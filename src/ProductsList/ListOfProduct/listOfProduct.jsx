@@ -1,18 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import Axios from "axios";
 import path from "../../settings";
 import Item from "./Item";
 import style from "./listOfProduct.module.css"
-import Product from "../Product";
 import RangeSlider from "./Slider";
-import { useHistory} from 'react-router-dom';
 import { useParams} from "react-router";
-import {withRouter} from "react-router-dom";
+import media from "../../media";
 
 
 const ListOfProduct = (props)=>{
     console.log(props.listProductsPage.productsData)
-    const media="http://178.62.252.32";
     let {categorySlug} = useParams();
     useEffect(()=>{
         console.log(categorySlug)
@@ -20,7 +17,7 @@ const ListOfProduct = (props)=>{
             props.addListOfProduct(res.data);
         })
         console.log(props.listProductsPage.allProductsData);
-    },[]);
+    },[categorySlug]);
         let el = props.listProductsPage.productsData.map((el, index) => (
             <Item
                 key={index}
@@ -59,6 +56,7 @@ const ListOfProduct = (props)=>{
                 <div>{props.listProductsPage.allProductsData.maxPrice}</div>
                 </div>
                 <div><button onClick={searchFilter}>Поиск</button></div>
+                <div><button>Сортировать по цене</button></div>
                 </div>
             <div className={style.container2}>
             {el}

@@ -1,12 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import Header from "./Header/Header";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Footer from "./Footer/Footer";
-import MainPage from "./MainPage/MainPage"
-import ProductDetails from "./ProductsList/ProductDetails/ProductDetails";
-import SignUp from "./Auth/SignUp";
-import Login from "./Auth/Login";
 import BasketContainer from "./Basket/BasketContainer";
 import MainPageContainer from "./MainPage/MainPageContainer";
 import ProductsContainer from "./ProductsList/ProductsContainer";
@@ -15,7 +10,6 @@ import ListOfProductContainer from "./ProductsList/ListOfProduct/listOfProductCo
 import User from "./User/User";
 import LoginContainer from "./Auth/LoginContainer";
 import HeaderContainer from "./Header/HeaderContainer";
-import Beket from "./Beket";
 function App(props) {
   return (
     <div className="App">
@@ -33,11 +27,7 @@ function App(props) {
           console.log(location.search);
           return <ListOfProductContainer location={location.search}/>
       }}/>
-      {/*<Route exact path="/products/" render={()=>{*/}
-      {/*    return <div>404</div>*/}
-      {/*}}/>*/}
       <Route exact path="/userDetails" render={()=><User/>}/>
-      {/*  <Beket/>*/}
       <Footer/>
     </div>
   );

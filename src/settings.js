@@ -1,2 +1,3 @@
-const path = "http://178.62.252.32/api";
+const path = "https://api.jussupov.me/api";
+const media="https://api.jussupov.me";
 export default path;

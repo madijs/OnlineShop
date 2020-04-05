@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import style from './BasketItem.module.css'
 import Badge from "@material-ui/core/Badge/Badge";
 import {withStyles} from "@material-ui/core";
-import {AddSummaActionCreator, RemoveSummaActionCreator} from "../redux/basket-reducer";
 import Axios from "axios";
 import path from "../settings";
 

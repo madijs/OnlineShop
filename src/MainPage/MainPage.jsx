@@ -1,16 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Adversting from "../Advertising/Advertising";
 import ProductsList from "../ProductsList/ProductsList";
-import PartnersList from "../PartnersProduct/PartnersList";
-import HouseProductsList from "../HouseProductList/HouseProductsList";
-import Categories from "../Categories/Categories";
-import SubCategories from "../SubCategories/SubCategories";
-import Axios from "axios";
-import path from '../settings'
-import {setUsersDataActionCreator} from "../redux/main-reducer";
-import VerticalTabs from "../Header/VerticalTabs";
-import MaterialTabs from "../Header/MaterialTabs";
-import MaterialPanels from "../Header/MaterialPanels";
 
 const MainPage=(props)=>{
     // if (!localStorage.getItem('token')){
@@ -34,31 +24,7 @@ const MainPage=(props)=>{
     }
 
     console.log(props.mainPage.currentSubCategory)
-    let categories_elements= props.mainPage.categoriesData.map((el,index)=>(
-        <MaterialTabs
-            a11yProps={a11yProps}
-            key={index}
-            state={props.mainPage}
-            title={el.title}
-            slug={el.slug}
-            // dispatch={props.dispatch}
-            compareSlugFunction={props.compareSlugFunction}
-            setCurrentSubCategory={props.setCurrentSubCategory}
-            setSubCategoriesData={props.setSubCategoriesData}
-        />
-    ));
 
-    let subCategories_elements = props.mainPage.currentSubCategory.map((el,index)=>(
-        <MaterialPanels
-            value={props.mainPage.value}
-            key={index}
-            title={el.title}
-            slug={el.slug}
-            child={el.child}
-            addListOfProduct={props.addListOfProduct}
-            setCurrentCategoryToList={props.setCurrentCategoryToList}
-        />
-    ))
     return(
         <div>
             <div style={{display:props.mainPage.visible? "block":"none"}}>

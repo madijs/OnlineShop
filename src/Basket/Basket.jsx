@@ -35,11 +35,9 @@ const Basket =(props)=>{
     let basket_items = props.basketPage.basketData.map((el,index)=>(
         <BasketItem
             setCartCount={props.setCartCount}
-           // removeFromBasket={props.removeFromBasket}
             id={el.product.id}
             prosto_id={el.id}
             key={index}
-            // dispatch={props.dispatch} //vmesto dispatch kidayu s containera
             addSumma={props.addSumma}
             removeSumma={props.removeSumma}
             changeQuantity={props.changeQuantity}

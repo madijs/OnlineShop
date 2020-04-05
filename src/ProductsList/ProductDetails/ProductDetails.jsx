@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom';
 import { useParams} from "react-router";
 import BreadCrumb from "./BreadCrumb";
@@ -6,9 +6,7 @@ import Axios from "axios";
 import path from "../../settings";
 import Gallery from "./Gallery";
 import check from '../../images/check.png'
-import {setProductDetailsActionCreator,setProductCategoryActionCreator} from "../../redux/productDetails-reducer";
 import './PD.css';
-import {Redirect} from "react-router";
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -18,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Specification from "./Specification";
 import Snackbar from '@material-ui/core/Snackbar';
+import media from "../../media";
 
 
 function TabPanel(props) {
@@ -169,7 +168,6 @@ const ProductDetails=(props)=>{
     const handleClose = () => {
         setState2({ ...state2, open: false });
     };
-    const media="http://178.62.252.32";
     const[state,setState]=useState({
         data: {
             images:[],
@@ -304,8 +302,7 @@ const ProductDetails=(props)=>{
             <div style={nonFilter}>
                 {show ? <ContinueOrNot/> : null}
             </div>
-        <div style={stil}>
-
+        <div style={show? blur:stil}>
             <BreadCrumb breadCrumb1={props.productDetailsPage.categoryData.title} breadCrumb2={x} breadCrumb3={y} />
             <div className="row_wrapper">
                 <Gallery images={images}/>
