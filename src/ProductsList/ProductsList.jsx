@@ -20,9 +20,6 @@ const ProductsList = (props)=>{
         padding:"100px"
     }
 
-
-
-
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -31,8 +28,8 @@ const ProductsList = (props)=>{
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            slidesToSlide: 2, // optional, default to 1.
+            items: 1,
+            slidesToSlide: 1, // optional, default to 1.
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
@@ -61,16 +58,17 @@ const ProductsList = (props)=>{
     }
 
     return(
-        <div>
+        <div style={{paddingLeft:'3%',paddingRight:'3%',paddingTop:'5%',paddingBottom:'5%'}}>
+            <div style={{boxShadow:'1px 1px 10px 1px #ccc'}}>
             <div className={style.text1div}>
                 <span className={style.text1}>Популярные Товары</span>
-                <span onClick={goTolist} className={style.text2}>Смотреть все</span>
-                <div className={style.pagination}>
-                </div>
+                {/*<span onClick={goTolist} className={style.text2}>Смотреть все</span>*/}
+                {/*<div className={style.pagination}>*/}
+                {/*</div>*/}
             </div>
             <div>
-            <hr style={style2}>
-            </hr>
+            {/*<hr style={style2}>*/}
+            {/*</hr>*/}
                 <div className={style.productsList}>
                     <Carousel
                         style={carousel}
@@ -88,6 +86,7 @@ const ProductsList = (props)=>{
                     {products_elements}
                     </Carousel>
                 </div>
+            </div>
             </div>
         </div>
     )

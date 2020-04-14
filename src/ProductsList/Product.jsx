@@ -6,27 +6,20 @@ import {withStyles} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge/Badge";
 import {NavLink} from "react-router-dom";
 
-const StyledBadge = withStyles(theme => ({
-    badge: {
-        width:'40px',
-        height:'40px',
-        borderRadius:'50%',
-        right: 5,
-        top: 19,
-        border: `2px solid ${theme.palette.background.paper}`,
-        padding: '0 4px',
-    },
-}))(Badge);
 
 const Product = (props)=>{
+    var stil={
+        textDecoration:'none'
+    }
     return(
-        <NavLink to={"/product/"+props.slug}>
+        <NavLink  to={"/product/"+props.slug}>
         <div className={style.product}>
             <div><img className={style.wetka} src={props.images}/></div>
-            <div><span className={style.title}></span>{props.category}</div>
-            <div className={style.descriptionDiv}><span className={style.description}>{props.title}</span></div>
+            <div className={style.title}>{props.category}</div>
+            <div className={style.descriptionDiv}>{props.title}</div>
             <div className={style.buy}>
-            <div className={style.price}>{props.price}тг</div>
+            <div className={style.price}>{props.price}тг/шт</div>
+                <div className={style.posmotret}>Посмотреть</div>
             </div>
         </div>
         </NavLink>

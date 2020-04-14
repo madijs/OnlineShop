@@ -1,15 +1,13 @@
 .text1div{
-    margin-top: 3%;
-    margin-left: 10%;
-    display: flex;
+    position: relative;
 }
 .text1{
-    margin-bottom: -5px;
-    color: #3f51b5;
+    position: absolute;
+    left: 2%;
+    top: 10px;
+    color: #000;
     font-family: Ubuntu;
-    font-size: 27px;
-    font-weight: bold;
-    text-align: left;
+    font-size: 23px;
 }
 .text2{
     margin-left: 6%;
@@ -21,15 +19,12 @@
     cursor: pointer;
 }
 .productsList{
-    margin-top: 1%;
-    margin-bottom: 1%;
-    margin-left: 7%;
-    margin-right: 7%;
+
 }
-.pagination{
-    display: flex;
-    margin-left: 50%;
-}
-.pagination div{
-    margin-right: 30px;
-}
+/*.pagination{*/
+/*    display: flex;*/
+/*    margin-left: 50%;*/
+/*}*/
+/*.pagination div{*/
+/*    margin-right: 30px;*/
+/*}*/

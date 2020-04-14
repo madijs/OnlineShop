@@ -1,41 +1,55 @@
 import React from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import back1 from '../images/NoPath.png'
+import back2 from '../images/NoPath2.png'
+import back3 from '../images/NoPath3.png'
 import style from "./Advertising.module.css"
-import im1 from "../images/im1.png"
-import wetki from "../images/wetki.png"
-import britva from "../images/britva.png"
+
 
 const Adversting = ()=>{
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+            slidesToSlide: 1, // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            slidesToSlide: 1, // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1, // optional, default to 1.
+        },
+    };
+    var carousel={
+        padding:"100px"
+    }
     return(
-        <div className={style.gridContainer}>
-            <div className={style.gridItem1}>
-                <div className={style.adv1}>
-                    <span className={style.aaa}>Большой Выбор</span><br/>
-                    <span className={style.aaa}>Товаров Для Дома</span>
-                    <hr className={style.line}></hr>
-                    <img className={style.im1} src={im1}/>
-                </div>
-            </div>
-            <div className={style.gridContainer2}>
-                <div className={style.gridItem2}>
-                    <div className={style.adv2}>
-                        <div>
-                            <img className={style.wetka1} src={wetki}/>
-                            <img className={style.wetka2} src={wetki}/>
-                        </div>
-
-                        <span className={style.adv2_text1}>НОВОЕ</span><br/>
-                        <span className={style.adv2_text2}>Зубные Щетки для Всех</span>
-                    </div>
-                </div>
-                <div className={style.gridItem3}>
-                    <div className={style.adv3}>
-                        <div><img className={style.britva} src={britva}/></div>
-                        <span className={style.adv3_text1}>Скидки</span><br/>
-                        <span className={style.adv3_text2}>- 20% на все товары</span><br/>
-                        <span className={style.adv3_text3}>от бритв до ручек</span>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <Carousel
+                style={carousel}
+                swipeable={false}
+                draggable={false}
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={3000}
+                keyBoardControl={true}
+                transitionDuration={500}
+                containerClass="carousel-container"
+                itemClass="carousel-item-padding-40-px"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                dotListClass="custom-dot-list-style"
+                keyBoardControl={true}
+                responsive={responsive}
+            >
+                <div style={{width:'100%',height:'400px'}}><img style={{width:'100%'}} src={back1}/></div>
+                <div style={{width:'100%',height:'400px'}}><img style={{width:'100%'}} src={back2}/></div>
+                <div style={{width:'100%',height:'400px'}}><img style={{width:'100%'}} src={back3}/></div>
+            </Carousel>
         </div>
     )
 }

@@ -237,10 +237,14 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+        color:'#00AEC8'
     },
     title: {
         display: 'none',
+        fontFamily:'Ubuntu',
+        color:'#00AEC8',
+        fontWeight:'lighter',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
@@ -346,9 +350,9 @@ function PrimarySearchAppBar(props) {
                 open={isMenuOpen}
                 onClose={handleMenuClose}
             >
-                <NavLink to={'/userDetails'}><MenuItem onClick={handleMenuClose}>Личный кабинет</MenuItem></NavLink>
-                <MenuItem onClick={handleMenuClose}>Мои заказы</MenuItem>
-                <MenuItem onClick={() => {
+                <NavLink style={{textDecoration:'none'}}  to={'/userDetails'}><MenuItem style={{color:'#00AEC8'}}  onClick={handleMenuClose}>Личный кабинет</MenuItem></NavLink>
+                <MenuItem style={{color:'#00AEC8'}}  onClick={handleMenuClose}>Мои заказы</MenuItem>
+                <MenuItem style={{color:'#00AEC8'}} onClick={() => {
                     Axios.post(path + '/auth/logout', {}, {
                         headers: {
                             Authorization: 'Token ' + localStorage.getItem('token')
@@ -370,8 +374,8 @@ function PrimarySearchAppBar(props) {
                 open={isMenuOpen}
                 onClose={handleMenuClose}
             >
-                <NavLink to={'/login'}><MenuItem onClick={handleMenuClose}>Войти</MenuItem></NavLink>
-                <NavLink to={'/register'}><MenuItem onClick={handleMenuClose}>Регистрация</MenuItem></NavLink>
+                <NavLink to={'/login'}><MenuItem style={{color:'#00AEC8'}} onClick={handleMenuClose}>Войти</MenuItem></NavLink>
+                <NavLink to={'/register'}><MenuItem style={{color:'#00AEC8'}}  onClick={handleMenuClose}>Регистрация</MenuItem></NavLink>
             </StyledMenu>
             }
         </div>
@@ -404,6 +408,7 @@ function PrimarySearchAppBar(props) {
                 </IconButton>
                 <p>Корзина</p>
             </MenuItem>
+
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
@@ -420,7 +425,7 @@ function PrimarySearchAppBar(props) {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="static">
+            <AppBar style={{backgroundColor:"#fff"}} position="static">
                 <Toolbar>
                     <IconButton
                         edge="start"
@@ -434,13 +439,28 @@ function PrimarySearchAppBar(props) {
                     <Typography style={{cursor:"pointer"}} onClick={()=>{
                         history.push('/')
                     }} className={classes.title} variant="h6" noWrap>
+                        Каталог
+                    </Typography>
+                    <div style={{
+                        borderLeft:"1px solid #ccc",
+                        height:'60px',
+                        marginRight:'10px',
+                        marginLeft:'10px'
+                    }}></div>
+                    <Typography style={{cursor:"pointer"}} onClick={()=>{
+                        history.push('/')
+                    }} className={classes.title} variant="h6" noWrap>
                         Optovichok
                     </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
+                    <div style={{border:'1px solid #00AEC8'}} className={classes.search}>
+                        <div style={{color:'#00AEC8'}} className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
                         <InputBase
+                            style={{color:'#00AEC8'}}
+                            onChange={(e)=>{
+                                console.log(e.target.value)
+                            }}
                             placeholder="Search…"
                             classes={{
                                 root: classes.inputRoot,
@@ -457,11 +477,12 @@ function PrimarySearchAppBar(props) {
                         {/*    </Badge>*/}
                         {/*</IconButton>*/}
                         <IconButton onClick={()=>history.push('/basket')} aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={localStorage.getItem('count')} color="secondary">
+                            <Badge style={{color:'#00AEC8'}} badgeContent={localStorage.getItem('count')} color="secondary">
                                 <ShoppingCartIcon />
                             </Badge>
                         </IconButton>
                         <IconButton
+                            style={{color:'#00AEC8'}}
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={menuId}

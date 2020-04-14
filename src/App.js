@@ -10,6 +10,7 @@ import ListOfProductContainer from "./ProductsList/ListOfProduct/listOfProductCo
 import User from "./User/User";
 import LoginContainer from "./Auth/LoginContainer";
 import HeaderContainer from "./Header/HeaderContainer";
+import Paperbase from "./AdminPanel/Paperbase";
 function App(props) {
   return (
     <div className="App">
@@ -28,6 +29,7 @@ function App(props) {
           return <ListOfProductContainer location={location.search}/>
       }}/>
       <Route exact path="/userDetails" render={()=><User/>}/>
+      <Route exact path="/admin" render={()=><Paperbase/>}/>
       <Footer/>
     </div>
   );

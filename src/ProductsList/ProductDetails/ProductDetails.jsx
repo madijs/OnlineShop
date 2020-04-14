@@ -17,6 +17,7 @@ import Box from '@material-ui/core/Box';
 import Specification from "./Specification";
 import Snackbar from '@material-ui/core/Snackbar';
 import media from "../../media";
+import notfound from "../../images/izo.png"
 
 
 function TabPanel(props) {
@@ -161,6 +162,7 @@ export const ContinueOrNot=()=>{
 
 
 const ProductDetails=(props)=>{
+    const[status,setStatus] = useState(false);
     const [state2, setState2] = React.useState({
         open: false,
         vertical: 'top',
@@ -193,6 +195,7 @@ const ProductDetails=(props)=>{
     useEffect(()=>{
         Axios.get(path + "/product/" + productSlug).then(res => {
             console.log(res.data);
+            setStatus(false)
             props.setProductDetails(res.data);
             if(res.data.old_price!=null) {
                 let temp2 = (res.data.old_price - res.data.price);
@@ -223,7 +226,12 @@ const ProductDetails=(props)=>{
             console.log(res.data);
             props.setProductCategory(res.data.category)
             // props.dispatch(setProductCategoryActionCreator(res.data.category))
-        })
+        }).catch((err) => {
+            console.log(err.response)
+            if(err.response.status===404){
+                setStatus(true)
+            }
+        });
 
     },[]);
     let x = "";
@@ -315,11 +323,13 @@ const ProductDetails=(props)=>{
 
     return (
         <div>
-            <div style={nonFilter}>
-                {show ? <ContinueOrNot/> : null}
-            </div>
-        <div style={show? blur:stil}>
-            <BreadCrumb breadCrumb1={props.productDetailsPage.categoryData.title} breadCrumb2={x} breadCrumb3={y} />
+        {!status &&
+    <div>
+        <div style={nonFilter}>
+            {show ? <ContinueOrNot/> : null}
+        </div>
+        <div style={show ? blur : stil}>
+            <BreadCrumb breadCrumb1={props.productDetailsPage.categoryData.title} breadCrumb2={x} breadCrumb3={y}/>
             <div className="row_wrapper">
                 <Gallery images={images}/>
                 <div className="item_descr">
@@ -342,10 +352,10 @@ const ProductDetails=(props)=>{
                         <div className="newPrice">
                             {props.productDetailsPage.delimetrPrice} тг
                         </div>
-                        {skidka>0 &&
-                            <div className="discount">
-                                Скидка:{skidka}%
-                            </div>
+                        {skidka > 0 &&
+                        <div className="discount">
+                            Скидка:{skidka}%
+                        </div>
                         }
                     </div>
                     <div className="kolvo">
@@ -355,7 +365,7 @@ const ProductDetails=(props)=>{
                         <span>Кол-во коробок: {props.productDetailsPage.productDetailsData.quantity}</span>
                     </div>
                     <div className="exist">
-                       <div><img className="logocheck" src={check}/></div>
+                        <div><img className="logocheck" src={check}/></div>
                         <div className="vnal"><span>В наличии!</span></div>
                     </div>
 
@@ -383,19 +393,27 @@ const ProductDetails=(props)=>{
                         </div>
                     </div>
                     <div>
-                        <button onClick={addToBasket({ vertical: 'top', horizontal: 'right' })} className="vkorzinu"><span className="vkorzinutext">в Корзину</span></button>
+                        <button onClick={addToBasket({vertical: 'top', horizontal: 'right'})} className="vkorzinu"><span
+                            className="vkorzinutext">в Корзину</span></button>
                     </div>
                 </div>
             </div>
-            <NavTabs specification={props.productDetailsPage.productDetailsData.specification} description={props.productDetailsPage.productDetailsData.description}/>
+            <NavTabs specification={props.productDetailsPage.productDetailsData.specification}
+                     description={props.productDetailsPage.productDetailsData.description}/>
         </div>
-            <Snackbar
-                anchorOrigin={{ vertical, horizontal }}
-                key={`${vertical},${horizontal}`}
-                open={open}
-                onClose={handleClose}
-                message="Сделано!=)"
-            />
+        <Snackbar
+            anchorOrigin={{vertical, horizontal}}
+            key={`${vertical},${horizontal}`}
+            open={open}
+            onClose={handleClose}
+            message="Сделано!=)"
+        />
+    </div>
+}{status &&
+            <div>
+                <img src={notfound}/>к
+            </div>
+    }
         </div>
     )
  };

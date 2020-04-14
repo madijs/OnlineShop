@@ -118,16 +118,16 @@ function VerticalTabs(props) {
                                 props.setSubCategoriesData(res.data);
                             })
                         }
-                    }} style={{color:"#3f51b5"}} label={el.title} {...a11yProps(0)} />
+                    }} style={{color:"#04aec8"}} label={el.title} {...a11yProps(0)} />
                 ))}
 
             </Tabs>
             {props.currentSubCategory.map((el,index)=>(
                 el.child.map(el=>(
                     <TabPanel value={value} index={index}>
-                        <span style={{color:"#3f51b5"}}>{el.title}</span>
+                        <span style={{color:"#04aec8"}}>{el.title}</span>
                         {el.child.map(el=>(
-                           <div style={{cursor:"pointer"}} onClick={()=> {
+                           <div style={{cursor:"pointer",color:"#04aec8"}} onClick={()=> {
                                history.push("/products/" + el.slug)
                            }}>{el.title}</div>
                         ))}
