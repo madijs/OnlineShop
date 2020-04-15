@@ -13,7 +13,7 @@ const Basket =(props)=>{
         if(localStorage.getItem('token')){
         Axios.get(path+'/cart/',
             {headers:{
-                    'Authorization':'Token ' + localStorage.getItem('token')
+                    'Authorization':'Baerer ' + localStorage.getItem('token')
                 }}).then(res=>{
             console.log(res.data);
             props.addToBasket(res.data);
@@ -66,7 +66,7 @@ const Basket =(props)=>{
         console.log(props.basketPage.quantity)
         Axios.post(path+'/cart/bulk/',props.basketPage.quantity,{
             headers:{
-                'Authorization': 'Token '+localStorage.getItem('token'),
+                'Authorization': 'Baerer '+localStorage.getItem('token'),
                 'Content-Type': 'application/json'
             }
         }).then(res=>{

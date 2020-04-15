@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import * as jwt_decode from 'jwt-decode';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -77,20 +78,22 @@ const Login = (props) => {
         };
         console.log(data);
 
-        Axios.post(path+'/auth/login', data).then(res => {
-            console.log(res.data);
-            localStorage.setItem('token', res.data.auth_token);
-            console.log(res.data.count)
-            localStorage.setItem('count',res.data.count);
+        Axios.post(path+'/token', data).then(res => {
+            console.log(res.data.access);
+            var decoded = jwt_decode(res.data.access);
+            console.log(decoded)
+            localStorage.setItem('token', res.data.access);
+            localStorage.setItem('count',decoded.count);
             props.setCartCount(localStorage.getItem('count'))
-            localStorage.setItem('birth_day',res.data.birth_day);
-            localStorage.setItem('first_name',res.data.first_name);
-            localStorage.setItem('last_name',res.data.last_name);
-            localStorage.setItem('id',res.data.id);
-            localStorage.setItem('gender',res.data.gender);
-            setToken(res.data.auth_token);
-            localStorage.setItem('email', data.email);
+            localStorage.setItem('birth_day',decoded.birth_day);
+            localStorage.setItem('first_name',decoded.first_name);
+            localStorage.setItem('last_name',decoded.last_name);
+            localStorage.setItem('id',decoded.id);
+            localStorage.setItem('gender',decoded.gender);
+            setToken(res.data.access);
+            localStorage.setItem('email', decoded.email);
             console.log(token);
+
             if (localStorage.getItem('token')){
                 window.location.href='/'
             }

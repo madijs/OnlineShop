@@ -19,7 +19,9 @@
     cursor: pointer;
 }
 .productsList{
-
+    overflow: hidden;
+    height: 400px;
+    padding: 10px;
 }
 /*.pagination{*/
 /*    display: flex;*/

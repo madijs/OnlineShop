@@ -55,12 +55,12 @@ const BasketItem = (props)=>{
     let deleteItem=()=>{
         Axios.delete(path+'/cart/'+props.prosto_id+'/',{
             headers: {
-                'Authorization': 'Token ' + localStorage.getItem('token')
+                'Authorization': 'Baerer ' + localStorage.getItem('token')
             }
         }).then(res=>{
             Axios.get(path+'/cart/count/',{
                 headers: {
-                    'Authorization': 'Token ' + localStorage.getItem('token')
+                    'Authorization': 'Baerer ' + localStorage.getItem('token')
                 }
             }).then(res=>{
                 props.setCartCount(res.data.count);

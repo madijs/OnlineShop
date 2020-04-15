@@ -318,7 +318,7 @@ const User = ()=>{
                                         birth_day: localStorage.getItem('birth_day')
                                     }, {
                                         headers: {
-                                            'Authorization': 'Token ' + localStorage.getItem('token')
+                                            'Authorization': 'Baerer ' + localStorage.getItem('token')
                                         }
                                     }).then(res => {
                                         console.log(res)

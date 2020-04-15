@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+.react-multi-carousel-list.carousel-container {
+  height: 100%;
+}
+.react-multi-carousel-track {
+  height: 324px;
+}

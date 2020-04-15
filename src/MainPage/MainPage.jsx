@@ -6,7 +6,7 @@ const MainPage=(props)=>{
     // if (!localStorage.getItem('token')){
     //     Axios.get(path+'/auth/users/me',{
     //         headers:{
-    //             'Authorization':'Token ' + localStorage.getItem('token')
+    //             'ion':'Token ' + localStorage.getItem('token')
     //         }}).then(res=>{
     //             console.log(localStorage.getItem('token'))
     //             console.log(res.data);

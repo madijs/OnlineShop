@@ -61,7 +61,7 @@ function VerticalTabs(props) {
     const [value, setValue] = React.useState(0);
     const history = useHistory()
     useEffect( ()=>{
-        Axios(path+"/product/").then(res=>{
+        Axios(path+"/product?page_size=10").then(res=>{
             console.log("gogogo");
             console.log(res.data);
             props.addProductsData(res.data)

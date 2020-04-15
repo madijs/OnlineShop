@@ -131,7 +131,7 @@ const StyledListItemIcon = withStyles(theme=>({
 //                         onClick={()=>{
 //                             Axios.post(path+'/auth/logout',{},{
 //                                 headers:{
-//                                     Authorization:'Token '+localStorage.getItem('token')
+//                                     ion:'Token '+localStorage.getItem('token')
 //                                 }
 //                             });
 //                             localStorage.clear();
@@ -355,7 +355,7 @@ function PrimarySearchAppBar(props) {
                 <MenuItem style={{color:'#00AEC8'}} onClick={() => {
                     Axios.post(path + '/auth/logout', {}, {
                         headers: {
-                            Authorization: 'Token ' + localStorage.getItem('token')
+                            Authorization: 'Baerer ' + localStorage.getItem('token')
                         }
                     });
                     localStorage.clear();

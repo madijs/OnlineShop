@@ -17,7 +17,9 @@ const ProductsList = (props)=>{
 
 
     var carousel={
-        padding:"100px"
+        padding:"100px",
+        overflow:"visible",
+        height: "100%"
     }
 
     const responsive = {
@@ -58,8 +60,8 @@ const ProductsList = (props)=>{
     }
 
     return(
-        <div style={{paddingLeft:'3%',paddingRight:'3%',paddingTop:'5%',paddingBottom:'5%'}}>
-            <div style={{boxShadow:'1px 1px 10px 1px #ccc'}}>
+        <div style={{paddingBottom:'5%'}}>
+            <div>
             <div className={style.text1div}>
                 <span className={style.text1}>Популярные Товары</span>
                 {/*<span onClick={goTolist} className={style.text2}>Смотреть все</span>*/}

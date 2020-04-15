@@ -1,68 +1,69 @@
 .product{
-    position: relative;
-    margin-top: 15%;
-    border: 0.5px solid #04aec8;
-    width: 339px;
-    height: 350px;
+    padding-top:20px;
+    border: 0.5px solid #ccc;
     text-align: left;
+    font-family: Proxima Nova Semibold;
+    transition: 500ms;
 }
 .product:hover .posmotret{
     display: block;
 }
 .product:hover .wetka{
-    transform: scale(1.2,1.2);
+    transform: scale(1.1,1.1);
+}
+.product:hover{
+    box-shadow: 1px 1px 6px 1px dimgrey;
 }
 .wetka{
-    transition: 1s;
-    position: absolute;
-    top: 6%;
-    left:21%;
+    text-align: center;
+}
+.wetka_img{
+    transition: 5s;
     width: 180px;
     height: 180px;
 }
 .title{
+    margin-left: 5%;
     color: #707070;
     font-size: 14px;
-    position: absolute;
-    bottom: 25%;
-    left: 8%;
     font-weight: bold;
     font-family: Ubuntu;
 }
 .descriptionDiv{
-    position: absolute;
+    margin-left: 5%;
     font-size: 13px;
     font-weight: normal;
     color: black;
-    bottom: 20%;
-    left: 8%;
-}
-.buy{
 }
 .price{
-    position: absolute;
-    bottom: 10%;
-    left: 8%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    margin-left: 5%;
     color: black;
     font-size: 20px;
 }
 
 .posmotret{
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5%;
+    margin-bottom: 3%;
     display: none;
-    position: absolute;
     bottom: 8%;
     right: 8%;
     color: black;
     font-size: 20px;
-    background-color: #04aec8;
-    border-radius: 10px;
+    background-color: #fff;
     padding: 5px;
-    color: white;
+    color: black;
     transition: visibility 1s;
     transition: 500ms;
+    border: 1px solid #000;
 }
 .posmotret:hover{
-    color:#04aec8;
-    background-color: white;
+    color:#fff;
+    background-color:#04aec8;
     border: 1px solid #04aec8;
 }
