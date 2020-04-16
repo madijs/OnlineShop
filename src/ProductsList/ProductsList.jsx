@@ -60,15 +60,10 @@ const ProductsList = (props)=>{
     }
 
     return(
-        <div style={{paddingBottom:'5%'}}>
-            <div>
+        <div style={{marginBottom:'10%',marginLeft:'5%',marginRight:'5%',backgroundColor:"#fff",height:"330px"}}>
             <div className={style.text1div}>
                 <span className={style.text1}>Популярные Товары</span>
-                {/*<span onClick={goTolist} className={style.text2}>Смотреть все</span>*/}
-                {/*<div className={style.pagination}>*/}
-                {/*</div>*/}
             </div>
-            <div>
             {/*<hr style={style2}>*/}
             {/*</hr>*/}
                 <div className={style.productsList}>
@@ -89,8 +84,6 @@ const ProductsList = (props)=>{
                     </Carousel>
                 </div>
             </div>
-            </div>
-        </div>
     )
 };
 

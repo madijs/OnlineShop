@@ -26,16 +26,16 @@ const Adversting = ()=>{
         },
     };
     var carousel={
-        padding:"100px"
+        padding:"100px",
     }
     return(
-        <div>
+        <div style={{marginLeft:'5%',marginRight:'5%',marginTop:'2%'}}>
             <Carousel
                 style={carousel}
                 swipeable={false}
                 draggable={false}
                 infinite={true}
-                autoPlay={true}
+                autoPlay={false}
                 autoPlaySpeed={3000}
                 keyBoardControl={true}
                 transitionDuration={500}
@@ -46,9 +46,9 @@ const Adversting = ()=>{
                 keyBoardControl={true}
                 responsive={responsive}
             >
-                <div style={{width:'100%',height:'400px'}}><img style={{width:'100%'}} src={back1}/></div>
-                <div style={{width:'100%',height:'400px'}}><img style={{width:'100%'}} src={back2}/></div>
-                <div style={{width:'100%',height:'400px'}}><img style={{width:'100%'}} src={back3}/></div>
+                <div style={{width:'100%',height:'500px'}}><img style={{width:'100%'}} src={back1}/></div>
+                <div style={{width:'100%',height:'500px'}}><img style={{width:'100%'}} src={back2}/></div>
+                <div style={{width:'100%',height:'500px'}}><img style={{width:'100%'}} src={back3}/></div>
             </Carousel>
         </div>
     )
