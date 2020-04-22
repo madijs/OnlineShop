@@ -2,47 +2,69 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import style from './ProductsList.module.css'
+import Slider from "react-slick";
 import Product from "./Product";
 import { useHistory } from 'react-router-dom';
 import media from "../media";
-
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "transparent",border:"1px solid #00AEC8",color:"#00AEC8" }}
+            onClick={onClick}
+        />
+    );
+}
+function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block",background: "transparent",border:"1px solid #00AEC8",color:"#00AEC8" }}
+            onClick={onClick}
+        />
+    );
+}
 const ProductsList = (props)=>{
-    const history = useHistory();
-    var style2={
-    backgroundColor: '#ccc',
-    color: '#00D1FF',
-    height: '2px',
-        width:'86%'
+
+    var settings = {
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        speed: 500,
+        cssEase: "linear",
+        initialSlide: 0,
+        nextArrow:<SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
-
-
-    var carousel={
-        padding:"100px",
-        overflow:"visible",
-        height: "100%"
-    }
-
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 4,
-            slidesToSlide: 4, // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 1,
-            slidesToSlide: 1, // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1, // optional, default to 1.
-        },
-    };
-
     console.log(props.productsData);
-
-
     let products_elements = props.productsData.map((el,index)=>(
         <Product
             key={index}
@@ -54,36 +76,13 @@ const ProductsList = (props)=>{
             category={el.category}
         />
     ));
-    let goTolist=()=>{
-        let path = 'list'
-        history.push(path)
-    }
-
     return(
-        <div style={{marginBottom:'10%',marginLeft:'5%',marginRight:'5%',backgroundColor:"#fff",height:"330px"}}>
-            <div className={style.text1div}>
-                <span className={style.text1}>Популярные Товары</span>
-            </div>
-            {/*<hr style={style2}>*/}
-            {/*</hr>*/}
-                <div className={style.productsList}>
-                    <Carousel
-                        style={carousel}
-                        swipeable={false}
-                        draggable={false}
-                        keyBoardControl={true}
-                        transitionDuration={500}
-                        containerClass="carousel-container"
-                        itemClass="carousel-item-padding-40-px"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        dotListClass="custom-dot-list-style"
-                        keyBoardControl={true}
-                        responsive={responsive}
-                    >
-                    {products_elements}
-                    </Carousel>
-                </div>
-            </div>
+        <div style={{marginTop:'2%'}}>
+            <div className={style.text1div}>Популярные товары</div>
+            <Slider style={{paddingRight:'2px'}} {...settings}>
+                  {products_elements}
+            </Slider>
+        </div>
     )
 };
 

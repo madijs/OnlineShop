@@ -294,7 +294,7 @@ const ProductDetails=(props)=>{
                 console.log(data);
                 setShow(true);
             } else {
-                prompt("Пустое не добавляем")
+                alert("Пустое не добавляем")
             }
         }else{
             let path='/login';

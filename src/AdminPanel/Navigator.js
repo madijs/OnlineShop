@@ -18,6 +18,7 @@ import SettingsInputComponentIcon from '@material-ui/icons/SettingsInputComponen
 import TimerIcon from '@material-ui/icons/Timer';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
+import { useHistory } from 'react-router-dom';
 
 const categories = [
     {
@@ -84,12 +85,12 @@ const styles = (theme) => ({
 
 function Navigator(props) {
     const { classes, ...other } = props;
-
+    const history = useHistory();
     return (
         <Drawer variant="permanent" {...other}>
             <List disablePadding>
                 <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
-                    Paperbase
+                    Optovichok
                 </ListItem>
                 <ListItem className={clsx(classes.item, classes.itemCategory)}>
                     <ListItemIcon className={classes.itemIcon}>
@@ -100,7 +101,7 @@ function Navigator(props) {
                             primary: classes.itemPrimary,
                         }}
                     >
-                        Project Overview
+                        Админ панель
                     </ListItemText>
                 </ListItem>
                 {categories.map(({ id, children }) => (
@@ -118,19 +119,21 @@ function Navigator(props) {
                             <ListItem
                                 key={childId}
                                 button
-                                className={clsx(classes.item, active && classes.itemActiveItem)}
+                                onClick={()=>history.push("/admin/"+childId)}
+                                className={clsx(classes.item,active && classes.itemActiveItem)}
                             >
                                 <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
                                 <ListItemText
                                     classes={{
                                         primary: classes.itemPrimary,
+
                                     }}
+
                                 >
                                     {childId}
                                 </ListItemText>
                             </ListItem>
                         ))}
-
                         <Divider className={classes.divider} />
                     </React.Fragment>
                 ))}

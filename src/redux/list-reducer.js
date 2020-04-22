@@ -2,6 +2,8 @@ const SET_PRODUCTS_DATA2='SET-PRODUCTS-DATA2';
 const SET_PRICE_FILTER='SET-PRICE-FILTER';
 const SET_CURRENT_PRODUCTS='SET-CURRENT-PRODUCTS';
 const SET_CURRENT_CATEGORY='SET-CURRENT-CATEGORY';
+const SET_MIN_PRICE='SET-MIN-PRICE';
+const SET_MAX_PRICE='SET-MAX-PRICE';
 
 let initialState = {
     allProductsData:{},
@@ -35,6 +37,16 @@ const listReducer=(state=initialState,action)=>{
             stateCopy.currentCategory=action.data;
             return stateCopy;
         }
+        case SET_MIN_PRICE:{
+            let stateCopy = {...state};
+            stateCopy.minPrice=action.price;
+            return stateCopy;
+        }
+        case SET_MAX_PRICE:{
+            let stateCopy = {...state};
+            stateCopy.maxPrice=action.price;
+            return stateCopy;
+        }
         default:
             return state;
 
@@ -45,4 +57,6 @@ export const setAllProductsDataActionCreator=(data)=>({type:SET_PRODUCTS_DATA2,d
 export const setPriceFilterActionCreator=(data)=>({type:SET_PRICE_FILTER,data:data});
 export const setCurrentProductsActionCreator=(data)=>({type:SET_CURRENT_PRODUCTS,data:data});
 export const setCurrentCategoryActionCreator=(data)=>({type:SET_CURRENT_CATEGORY,data:data});
+export const setMinPriceAC =(price) =>({type:SET_MIN_PRICE,price:price});
+export const setMaxPriceAC=(price)=>({type:SET_MAX_PRICE,price:price});
 export default listReducer;

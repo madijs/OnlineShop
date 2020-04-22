@@ -12,6 +12,16 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
+}));
 
 const styles = (theme) => ({
     paper: {
@@ -38,7 +48,7 @@ const styles = (theme) => ({
 
 function Content(props) {
     const { classes } = props;
-
+    const classes2 = useStyles();
     return (
         <Paper className={classes.paper}>
             <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
@@ -59,7 +69,7 @@ function Content(props) {
                         </Grid>
                         <Grid item>
                             <Button variant="contained" color="primary" className={classes.addUser}>
-                                Add user
+                                Добавить товар
                             </Button>
                             <Tooltip title="Reload">
                                 <IconButton>
@@ -71,9 +81,12 @@ function Content(props) {
                 </Toolbar>
             </AppBar>
             <div className={classes.contentWrapper}>
-                <Typography color="textSecondary" align="center">
-                    No users for this project yet
-                </Typography>
+                <div>
+                <div style={{marginTop:"2%"}}><TextField id="outlined-basic" label="Outlined" variant="outlined" /></div>
+                    <div style={{marginTop:"2%"}}><TextField id="outlined-basic" label="Outlined" variant="outlined" /></div>
+                    <div style={{marginTop:"2%"}}><TextField id="outlined-basic" label="Outlined" variant="outlined" /></div>
+                    <div style={{marginTop:"2%"}}><TextField id="outlined-basic" label="Outlined" variant="outlined" /></div>
+                </div>
             </div>
         </Paper>
     );

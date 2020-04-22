@@ -8,19 +8,29 @@ import { useParams} from "react-router";
 import media from "../../media";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 200,
+        width:"100%",
+        padding:0
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    select:{
+        backgroundColor:"#fff",
+        width:"70%",
+        marginLeft:"auto",
+        marginRight:"auto",
+        height:"30px",
+        fontFamily:"Roboto,san-serif",
+        '&:focus': {
+            backgroundColor:"#000"
+        },
+    }
 }));
 const ListOfProduct = (props)=>{
     console.log(props.listProductsPage.productsData);
@@ -41,7 +51,7 @@ const ListOfProduct = (props)=>{
             <Item
                 key={index}
                 dispatch={props.dispatch}
-                title={el.title}
+                title={el.title.substring(0, 33) + "..."}
                 slug={el.slug}
                 price={el.price}
                 images={media + el.image}
@@ -76,26 +86,13 @@ const ListOfProduct = (props)=>{
 
     return(
         <div className={style.container}>
+            <div></div>
             <div className={style.container1}>
-                <div>Подбор параметров</div>
-                <div className={style.pricefilter}>
-                <div>
-                    {props.listProductsPage.allProductsData.minPrice}
-                </div>
-                <div>
-                    <RangeSlider
-                    maxPrice={props.listProductsPage.allProductsData.maxPrice}
-                    minPrice={props.listProductsPage.allProductsData.minPrice}
-                    setPriceFilter={props.setPriceFilter}
-                /></div>
-                <div>{props.listProductsPage.allProductsData.maxPrice}</div>
-                </div>
-                <div><button onClick={searchFilter}>Поиск</button></div>
-                <div>
-                    <FormControl variant="filled" className={classes.formControl}>
-                        <InputLabel htmlFor="filled-age-native-simple">Сортировать</InputLabel>
+                <div className={style.filter}>
+                    <div className={style.text}>Соортировать по</div>
+                    <FormControl variant="outlined" className={classes.formControl}>
                         <Select
-                            style={{backgroundColor:"white"}}
+                            className={classes.select}
                             native
                             value={state.age}
                             onChange={handleChange}
@@ -104,20 +101,37 @@ const ListOfProduct = (props)=>{
                                 id: 'filled-age-native-simple',
                             }}
                         >
-                            <option value={"title"}>по алфавиту от А до Я</option>
-                            <option value={"likes"}>по популярности</option>
-                            <option value={"price"}>по возрастанию цены</option>
-                            <option value={"-price"}>по убыванию цены</option>
-                            <option value={"-created"}>по самые новые</option>
-                            <option value={"created"}>по самые старые</option>
+                            <option value={"title"}>алфавиту</option>
+                            <option value={"likes"}>популярности</option>
+                            <option value={"price"}>возрастанию цены</option>
+                            <option value={"-price"}>убыванию цены</option>
+                            <option value={"-created"}>самые новые</option>
+                            <option value={"created"}>самые старые</option>
                         </Select>
                     </FormControl>
+                    <div className={style.text2}>Цена</div>
+                    <div style={{marginTop:"5%"}} className={style.pricefilter}>
+                        <div>
+                            <RangeSlider
+                                maxPrice={props.listProductsPage.allProductsData.maxPrice}
+                                minPrice={props.listProductsPage.allProductsData.minPrice}
+                                setPriceFilter={props.setPriceFilter}
+                                setMinPrice={props.setMinPrice}
+                                setMaxPrice={props.setMaxPrice}
+                            />
+                        </div>
+                        {/*<div>*/}
+                        {/*    {props.listProductsPage.allProductsData.minPrice}*/}
+                        {/*</div>*/}
+                        {/*<div>{props.listProductsPage.allProductsData.maxPrice}</div>*/}
+                    </div>
+                    <div><button onClick={searchFilter}>Применить</button></div>
                 </div>
-                </div>
+            </div>
             <div className={style.container2}>
             {el}
             </div>
-
+            <div></div>
         </div>
     )
 }

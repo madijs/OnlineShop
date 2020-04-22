@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useParams} from "react-router";
 import './App.css';
 import { Route } from "react-router-dom";
 import Footer from "./Footer/Footer";
@@ -14,7 +15,7 @@ import Paperbase from "./AdminPanel/Paperbase";
 function App(props) {
   return (
     <div className="App">
-      <HeaderContainer/>
+        <HeaderContainer/>
       <Route exact path="/" render={()=><MainPageContainer/>} />
       <Route exact path="/register" render={()=><SignUpContainer/>} />
       <Route exact path="/login" render={()=><LoginContainer/>} />
@@ -29,7 +30,7 @@ function App(props) {
           return <ListOfProductContainer location={location.search}/>
       }}/>
       <Route exact path="/userDetails" render={()=><User/>}/>
-      <Route exact path="/admin" render={()=><Paperbase/>}/>
+      <Route path="/admin" render={()=><Paperbase/>}/>
       <Footer/>
     </div>
   );

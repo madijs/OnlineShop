@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,8 +6,10 @@ import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Navigator from './Navigator';
+import { Route } from "react-router-dom";
 import Content from './Content';
 import Header from './Header';
+
 
 function Copyright() {
     return (
@@ -164,10 +166,12 @@ const styles = {
 function Paperbase(props) {
     const { classes } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+    useEffect(()=>{
+        localStorage.setItem('admin','1');
+    },[]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -188,7 +192,7 @@ function Paperbase(props) {
                 </nav>
                 <div className={classes.app}>
                     <main className={classes.main}>
-                        <Content />
+                        <Route exact path="/admin/Товары" render={()=><Content/>}/>
                     </main>
                     <footer className={classes.footer}>
                         <Copyright />
