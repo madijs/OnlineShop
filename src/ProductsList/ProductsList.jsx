@@ -30,22 +30,14 @@ const ProductsList = (props)=>{
 
     var settings = {
         infinite: false,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         speed: 500,
         cssEase: "linear",
         initialSlide: 0,
         nextArrow:<SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
         responsive: [
-            {
-                breakpoint: 1300,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                    initialSlide: 4
-                }
-            },
             {
                 breakpoint: 1024,
                 settings: {
