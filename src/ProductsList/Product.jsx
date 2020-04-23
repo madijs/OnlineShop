@@ -18,7 +18,7 @@ const Product = (props)=>{
             <div className={style.title}>{props.category}</div>
             <div className={style.descriptionDiv}>{props.title}</div>
             <div className={style.price}>{props.price}тг/шт</div>
-            <div className={style.posmotret}>Посмотреть</div>
+            <div className={style.posmotret}>CМОТРЕТЬ</div>
         </div>
         </NavLink>
     )

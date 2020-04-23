@@ -66,7 +66,7 @@ const Adversting = ()=>{
         ]
     }
     return(
-        <div style={{marginLeft:"6%",marginRight:"6%"}}>
+        <div style={{marginLeft:"15%",marginRight:"15%"}}>
             <Slider {...settings}>
                 <div>
                     <br/>

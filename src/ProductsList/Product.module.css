@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 .product{
+    position: relative;
+    height: 300px;
     padding-top:20px;
     border: 0.5px solid #ccc;
     text-align: left;
@@ -10,23 +12,22 @@
 .product:hover .posmotret{
     display: block;
 }
-.product:hover .wetka{
-    transform: scale(1.1,1.2);
-}
 .product:hover{
     z-index: 99;
     box-shadow: 1px 1px 6px 1px dimgrey;
+    padding-bottom: 30px;
 }
 .wetka{
     text-align: center;
 }
 .wetka_img{
     transition: 5s;
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
 }
 .title{
     margin-left: 5%;
+    margin-top: 5%;
     color: #707070;
     font-size: 14px;
     font-weight: bold;
@@ -35,14 +36,15 @@
 }
 .descriptionDiv{
     margin-left: 5%;
+    margin-top: 2%;
     font-size: 13px;
     font-family: Roboto,sans-serif;
     color: black;
 }
 .price{
-    margin-top: 2%;
-    margin-bottom: 1%;
-    margin-left: 5%;
+    position: absolute;
+    left:4%;
+    bottom: 15%;
     color: black;
     font-size: 20px;
     font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
@@ -50,27 +52,18 @@
 }
 
 .posmotret{
-    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-family: Montserrat;
+    letter-spacing: 3px;
     text-align: center;
     border-radius: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 5%;
-    margin-bottom: 3%;
+    position: absolute;
     display: none;
-    bottom: 8%;
-    right: 8%;
-    color: black;
-    font-size: 20px;
-    background-color: #fff;
+    bottom: 5%;
+    left: 25%;
+    font-size: 14px;
     padding: 5px;
-    color: black;
-    transition: visibility 1s;
-    transition: 500ms;
-    border: 1px solid #000;
-}
-.posmotret:hover{
     color:#fff;
     background-color:#04aec8;
     border: 1px solid #04aec8;
+    transition: 500ms;
 }

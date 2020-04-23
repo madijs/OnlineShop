@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 .text1div{
-    margin-left:6.1%;
-    margin-right: 6.2%;
+    margin-left:auto;
+    margin-right: auto;
+    width: 980px;
     text-align:left;
     background-color:#fff;
     padding:10px;
