@@ -302,69 +302,81 @@
         padding: 5px 10px; } }
 
 
+
+.row_wrapper {
+    background-color: #fff;
+    display: block;
+    text-align: left;
+    margin: 5% 8% 2% 8%;
+    padding-bottom: 2%;
+}
+
 .title{
-    font-weight: bold;
-    font-size: 25px;
-    font-family: Ubuntu;
-    color: #4F5D75;
+    padding-top: 1%;
+    color: #2B2A29;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    margin: 1% 1%;
 }
+
 .item_code{
-    font-weight: lighter;
-    font-size: 20px;
-    margin-top: 15px;
-    font-family: Ubuntu;
-}
-.item_code2{
-    font-weight: bold;
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 1%;
 }
 .item_maked{
-    font-weight: lighter;
-    font-size: 20px;
-    margin-top: 15px;
-    font-family: Ubuntu;
+    margin-left: 2%;
 }
-.discount{
-    margin-left: 30px;
-    font-size: 20px;
-    background-color: deeppink;
+.makedFrom{
+    margin: 1%;
+    font-size: 1.5rem;
+
 }
-.exist{
-    display: flex;
-    margin-top: 25px;
-    font-family: Ubuntu;
-    font-size: 20px;
-    font-weight: lighter;
-}
-.logocheck{
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-}
-.vnal{
-    margin-top: 5px;
+.price{
+    margin-left: 2%;
 }
 .priceBox{
-    font-weight: lighter;
-    font-size: 20px;
-    margin-top: 15px;
-    font-family: Ubuntu;
-    margin-right: 10px;
+    font-size: 1rem;
+    font-family: Roboto, sans-serif;
+    color: #707070;
+}
+.newPrice{
+    font-size: 1.5rem;
+    margin: 1%;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+}
+.oldPrice{
+    font-size: 1rem;
+    text-decoration: line-through;
+    color: #707070;
+    margin: 0.5%;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
 }
 .kolvo{
-    font-weight: lighter;
-    font-size: 20px;
-    margin-top: 20px;
-    font-family: Ubuntu;
-    margin-right: 10px;
+    margin-left: 2%;
+     margin-top: 2%;
 }
-.calculator{
-    display: flex;
+.kolvoText{
+    font-size: 1rem;
+    font-family: Roboto, sans-serif;
+    color: #707070;
 }
-.calculator div{
-    margin-right: 5px;
+.kolvoValue{
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    margin: 1%;
 }
+
+.exist{
+    margin-left: 2%;
+    margin-top: 2%;
+    color: green;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+}
+
 .equal{
-    margin-top: 10px;
+    margin-top: 15%;
+    margin-left: 10%;
     font-size: 30px;
 }
 /*input[type=number] {*/
@@ -377,55 +389,54 @@
 /*    border-radius: 4px;*/
 /*}*/
 .input_number{
-    width: 150px;
+    width: 100%;
     font-size: 16px;
     padding: 12px 20px;
-    margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #00D1FF;
     border-radius: 4px;
 }
 .calcTextdiv{
-    display: flex;
-}
-.calcTextdiv div{
-    margin-right: 30px;
-    margin-top: 40px;
+    display: grid;
+    margin-left: 2%;
+    margin-top: 3%;
+    grid-template-columns: 25% 4% 25% 4% 25%;
+    grid-template-rows: auto auto;
 }
 .calcText{
-    font-weight: lighter;
-    font-size: 17px;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-size:1rem;
+    color: #707070;
 }
 .calcText2{
-    font-weight: lighter;
-    font-size: 17px;
-    margin-left: 30px;
-    margin-right: 100px;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    color: #707070;
 }
 .calcText3{
-    font-weight: lighter;
-    font-size: 17px;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    color: #707070;
 }
 .vkorzinu{
-    margin-top: 70px;
-    background-color: #00D1FF;
+    margin-left: 2%;
+    margin-top: 4%;
+    background-color: #00AEC8;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
-    padding: 13px 32px;
+    padding: 1% 4%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     cursor: pointer;
 }
 .vkorzinu:hover{
     box-shadow: 1px 1px 1px 1px black;
 }
 .vkorzinutext{
-    font-family: Ubuntu;
-    font-weight: lighter;
-    font-size: 24px;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
 }
 .tab{
     display: flex !important;
@@ -441,6 +452,11 @@
 /*    border-radius: 4px;*/
 /*}*/
 .MuiTabs-flexContainer{
-    margin-left: 30%;
-    margin-right: 30%;
+    padding-right: 20%;
+    background-color: #ebebeb;
+    color: #00AEC8;
+}
+.MuiTabs-flexContainer a{
+    font-size: 0.8rem;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
 }

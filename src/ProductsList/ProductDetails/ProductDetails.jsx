@@ -5,10 +5,9 @@ import BreadCrumb from "./BreadCrumb";
 import Axios from "axios";
 import path from "../../settings";
 import Gallery from "./Gallery";
-import check from '../../images/check.png'
 import './PD.css';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -18,11 +17,11 @@ import Specification from "./Specification";
 import Snackbar from '@material-ui/core/Snackbar';
 import media from "../../media";
 import notfound from "../../images/izo.png"
+import Menu from "@material-ui/core/Menu";
 
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-
     return (
         <Typography
             component="div"
@@ -49,9 +48,17 @@ function a11yProps(index) {
         'aria-controls': `nav-tabpanel-${index}`,
     };
 }
+
+const StyledTab = withStyles({
+    selected:{
+        backgroundColor:"#00AEC8",
+        color:"#fff"
+    }
+})(Tab);
+
 function LinkTab(props) {
     return (
-        <Tab
+        <StyledTab
             component="a"
             onClick={event => {
                 event.preventDefault();
@@ -64,6 +71,11 @@ function LinkTab(props) {
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
+        marginLeft:"8%",
+        marginRight: "8%",
+        backgroundColor: "#fff",
+        marginBottom:"5%",
+        height:"200px",
     },
 }));
 
@@ -96,13 +108,13 @@ export function NavTabs(props) {
     }
 
     return (
-        <div  className={classes.root}>
+        <div className={classes.root}>
             <AppBar className="MuiAppBar-colorPrimary" position="static">
                 <Tabs
                     className="MuiTabs-flexContainer"
-                    centered={true}
                     variant="fullWidth"
                     value={value}
+
                     onChange={handleChange}
                     aria-label="nav tabs example"
                 >
@@ -329,73 +341,76 @@ const ProductDetails=(props)=>{
             {show ? <ContinueOrNot/> : null}
         </div>
         <div style={show ? blur : stil}>
-            <BreadCrumb breadCrumb1={props.productDetailsPage.categoryData.title} breadCrumb2={x} breadCrumb3={y}/>
+            {/*<BreadCrumb breadCrumb1={props.productDetailsPage.categoryData.title} breadCrumb2={x} breadCrumb3={y}/>*/}
             <div className="row_wrapper">
-                <Gallery images={images}/>
-                <div className="item_descr">
-                    <div className="title">
-                        {props.productDetailsPage.productDetailsData.title}
-                    </div>
+                <div className="title">
+                    {props.productDetailsPage.productDetailsData.title}
+                </div>
+                <div style={{borderTop:"1px solid #ccc"}}>
                     <div className="item_code">
                         Код товара: <span className="item_code2">86236</span>
                     </div>
+                    <div style={{display:"flex"}}>
+                <Gallery images={images}/>
+                <div className="item_descr">
                     <div className="item_maked">
-                        Производитель: Philips Company USA
+                        <div className="kolvoText">Производитель:</div>
+                        <div className="makedFrom">Philips Company USA</div>
+
                     </div>
                     <div className="price">
                         <div>
-                            <span className="priceBox">Цена за коробку:</span>
-                        </div>
-                        <div className="oldPrice">
-                            {props.productDetailsPage.productDetailsData.old_price}
+                            <span className="priceBox">Цена за ед. :</span>
                         </div>
                         <div className="newPrice">
-                            {props.productDetailsPage.delimetrPrice} тг
+                            {props.productDetailsPage.delimetrPrice}₸
                         </div>
-                        {skidka > 0 &&
-                        <div className="discount">
-                            Скидка:{skidka}%
+                        <div className="oldPrice">
+                            {props.productDetailsPage.productDetailsData.old_price}₸
                         </div>
-                        }
                     </div>
                     <div className="kolvo">
-                        <span>Кол-во в коробке: {props.productDetailsPage.productDetailsData.box_quantity}</span>
+                        <div className="kolvoText">Количество в коробке:</div>
+                        <div className="kolvoValue">{props.productDetailsPage.productDetailsData.box_quantity}</div>
                     </div>
                     <div className="kolvo">
-                        <span>Кол-во коробок: {props.productDetailsPage.productDetailsData.quantity}</span>
+                        <div className="kolvoText">Общее количество коробок:</div>
+                        <div className="kolvoValue">{props.productDetailsPage.productDetailsData.quantity}</div>
                     </div>
+
                     <div className="exist">
-                        <div><img className="logocheck" src={check}/></div>
                         <div className="vnal"><span>В наличии!</span></div>
                     </div>
 
                     <div className="calcTextdiv">
                         <div><label className="calcText">Кол-во коробок:</label></div>
+                        <div></div>
                         <div><label className="calcText2">Всего:</label></div>
+                        <div></div>
                         <div><label className="calcText3">Сумма:</label></div>
+                            <div>
+                              <input className="input_number" key={3} onChange={priceCalculate} type="number"/>
+                            </div>
+                            <div className="equal">
+                                <span>=</span>
+                            </div>
+                            <div>
+                                <input className="input_number" key={1} defaultValue={kol_vo_el} type="number"/>
+                            </div>
+                            <div className="equal">
+                                <span>=</span>
+                            </div>
+                            <div>
+                                <input className="input_number" key={2} defaultValue={summa} type="text"/>
+                            </div>
                     </div>
 
-                    <div className="calculator">
-                        <div>
-                            <input className="input_number" key={3} onChange={priceCalculate} type="number"/>
-                        </div>
-                        <div className="equal">
-                            <span>=</span>
-                        </div>
-                        <div>
-                            <input className="input_number" key={1} defaultValue={kol_vo_el} type="number"/>
-                        </div>
-                        <div className="equal">
-                            <span>=</span>
-                        </div>
-                        <div>
-                            <input className="input_number" key={2} defaultValue={summa} type="text"/>
-                        </div>
-                    </div>
                     <div>
                         <button onClick={addToBasket({vertical: 'top', horizontal: 'right'})} className="vkorzinu"><span
-                            className="vkorzinutext">в Корзину</span></button>
+                            className="vkorzinutext">Добавить в корзину</span></button>
                     </div>
+                </div>
+                </div>
                 </div>
             </div>
             <NavTabs specification={props.productDetailsPage.productDetailsData.specification}

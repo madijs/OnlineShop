@@ -9,6 +9,7 @@
   font-style: normal;
 }
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 .App {
   text-align: center;
   background-color: #F5F5F5;
@@ -70,7 +71,7 @@
   align-content: center;
   align-items: center;
   overflow: hidden;
-  margin-top: 10%;
+  margin-top: 14%;
   padding-top: 6px;
 }
 .slick-prev{
@@ -93,3 +94,4 @@
   background-color: transparent;
   opacity: 0.25;
 }
+

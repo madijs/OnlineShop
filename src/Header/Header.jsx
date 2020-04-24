@@ -251,7 +251,7 @@ function PrimarySearchAppBar(props) {
                             onChange={(e)=>{
                                 console.log(e.target.value)
                             }}
-                            placeholder="Search…"
+                            placeholder="Поиск…"
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,

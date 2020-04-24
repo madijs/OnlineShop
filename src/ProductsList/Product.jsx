@@ -17,7 +17,7 @@ const Product = (props)=>{
             <div className={style.wetka}><img className={style.wetka_img} src={props.images}/></div>
             <div className={style.title}>{props.category}</div>
             <div className={style.descriptionDiv}>{props.title}</div>
-            <div className={style.price}>{props.price}тг/шт</div>
+            <div className={style.price}>{props.price}₸/шт</div>
             <div className={style.posmotret}>CМОТРЕТЬ</div>
         </div>
         </NavLink>

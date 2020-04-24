@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import style from './ProductsList.module.css'
@@ -77,12 +77,14 @@ const ProductsList = (props)=>{
         />
     ));
     return(
-        <div style={{marginTop:'2%',marginLeft:"12.2%",marginRight:"12.2%"}}>
-            <div className={style.text1div}>Популярные товары</div>
+    <React.Fragment>
+        <div className={style.text1div}><span className={style.text}>Популярные товары</span></div>
+        <div style={{marginLeft:"12.2%",marginRight:"12.2%",marginTop:"8%"}}>
             <Slider style={{paddingRight:'2px'}} {...settings}>
                   {products_elements}
             </Slider>
         </div>
+    </React.Fragment>
     )
 };
 
