@@ -29,10 +29,7 @@ const usersReducer = (state=initialState,action)=>{
             state.signUpform.gender=action.data;
             return state;
         case SIGN_UP_DATA:
-            state.signUpform.first_name=action.data.first_name;
-            state.signUpform.last_name=action.data.last_name;
-            state.signUpform.email=action.data.email;
-            state.signUpform.password=action.data.password;
+            state.signUpform=action.data;
             console.log(state.signUpform);
             Axios.post(path+'/auth/users/', state.signUpform).then(res => {
                 console.log(res.data);

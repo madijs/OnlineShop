@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect,Fragment} from "react";
 import Axios from "axios";
 import path from "../../settings";
 import Item from "./Item";
@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Pagination from './Pagination'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -42,7 +43,9 @@ const ListOfProduct = (props)=>{
     let {categorySlug} = useParams();
     useEffect(()=>{
         console.log(categorySlug)
-        Axios.get(path+'/product/?category='+categorySlug+"&ordering=title").then(res=>{
+        Axios.get(path+'/product/?category='+categorySlug+
+            `&ordering=title&page=${props.listProductsPage.currentPage}&page_size=${props.listProductsPage.pageSize}`).then(res=>{
+            console.log(res.data)
             props.addListOfProduct(res.data);
         })
         console.log(props.listProductsPage.allProductsData);
@@ -83,8 +86,23 @@ const ListOfProduct = (props)=>{
             [sort]: event.target.value,
         });
     };
+    const changeCurrentPage=(pageNumber)=>{
+        props.setCurrentPage(pageNumber);
+        Axios.get(path+'/product/?category='+categorySlug+
+            `&ordering=title&page=${pageNumber}&page_size=${props.listProductsPage.pageSize}`).then(res=>{
+            console.log(res.data);
+            props.addListOfProduct(res.data);
+        })
+    }
+
 
     return(
+        <React.Fragment>
+            {props.listProductsPage.pageArray.map(p=>(
+                <button className={props.listProductsPage.currentPage===p && style.selectedPage} onClick={()=>{
+                    changeCurrentPage(p)
+                }} >{p}</button>
+            ))}
         <div className={style.container}>
             <div></div>
             <div className={style.container1}>
@@ -133,6 +151,7 @@ const ListOfProduct = (props)=>{
             </div>
             <div></div>
         </div>
+        </React.Fragment>
     )
 }
 export default ListOfProduct;

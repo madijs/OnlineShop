@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
-import SignUp from "./SignUp";
 import {
     signUpDataActionCreator,
     signUpDataBirthDateActionCreator,
     signUpDataGenderActionCreator
 } from "../redux/users-reducer";
+import RegisterComponent from "./RegisterComponent";
 
 let mapStateToProps=(state)=>{
     return{
@@ -26,5 +26,5 @@ let mapDispatchToProps=(dispatch)=>{
     }
 }
 
-const SignUpContainer = connect(mapStateToProps,mapDispatchToProps)(SignUp)
+const SignUpContainer = connect(mapStateToProps,mapDispatchToProps)(RegisterComponent)
 export default SignUpContainer;

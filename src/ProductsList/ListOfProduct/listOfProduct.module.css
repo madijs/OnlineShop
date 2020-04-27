@@ -110,6 +110,9 @@
 .inputDiv{
     width: 30%;
 }
+.selectedPage{
+    color: red;
+}
 /*.select{*/
 /*    background-color: #fff;*/
 /*    width: 80%;*/

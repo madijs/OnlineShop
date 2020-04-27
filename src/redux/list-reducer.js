@@ -4,21 +4,34 @@ const SET_CURRENT_PRODUCTS='SET-CURRENT-PRODUCTS';
 const SET_CURRENT_CATEGORY='SET-CURRENT-CATEGORY';
 const SET_MIN_PRICE='SET-MIN-PRICE';
 const SET_MAX_PRICE='SET-MAX-PRICE';
+const SET_CURRENT_PAGE='SET-CURRENT-PAGE';
 
 let initialState = {
     allProductsData:{},
     productsData:[],
     maxPrice:'',
     minPrice:'',
-    currentCategory:''
+    currentCategory:'',
+    pageArray:[],
+    pageSize:2,
+    currentPage:2,
+    totalCount:0
 };
 
 const listReducer=(state=initialState,action)=>{
     switch (action.type) {
         case SET_PRODUCTS_DATA2: {
             let stateCopy = {...state};
+            stateCopy.pageArray=[];
             stateCopy.allProductsData=action.data;
             stateCopy.productsData=action.data.results;
+            stateCopy.totalCount = action.data.count;
+
+            let n = Math.ceil(stateCopy.totalCount/stateCopy.pageSize);
+
+            for (let i=1;i<=n;i++){
+                stateCopy.pageArray.push(i);
+            }
             return stateCopy
         }
         case SET_PRICE_FILTER:{
@@ -47,6 +60,11 @@ const listReducer=(state=initialState,action)=>{
             stateCopy.maxPrice=action.price;
             return stateCopy;
         }
+        case SET_CURRENT_PAGE:{
+            let stateCopy ={...state};
+            stateCopy.currentPage=action.data;
+            return stateCopy;
+        }
         default:
             return state;
 
@@ -59,4 +77,5 @@ export const setCurrentProductsActionCreator=(data)=>({type:SET_CURRENT_PRODUCTS
 export const setCurrentCategoryActionCreator=(data)=>({type:SET_CURRENT_CATEGORY,data:data});
 export const setMinPriceAC =(price) =>({type:SET_MIN_PRICE,price:price});
 export const setMaxPriceAC=(price)=>({type:SET_MAX_PRICE,price:price});
+export const setCurrentPageAC=(data)=>({type:SET_CURRENT_PAGE,data:data});
 export default listReducer;

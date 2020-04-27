@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 const MainPage=(props)=>{
     useEffect(()=>{
         localStorage.setItem('admin','0');
+
     },[])
     // if (!localStorage.getItem('token')){
     //     Axios.get(path+'/auth/users/me',{

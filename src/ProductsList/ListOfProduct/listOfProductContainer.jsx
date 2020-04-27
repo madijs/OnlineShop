@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import ListOfProduct from "./listOfProduct";
 import {
-    setAllProductsDataActionCreator,
+    setAllProductsDataActionCreator, setCurrentPageAC,
     setCurrentProductsActionCreator, setMaxPriceAC, setMinPriceAC,
     setPriceFilterActionCreator
 } from "../../redux/list-reducer";
@@ -30,6 +30,9 @@ let mapDispatchToProps=(dispatch)=>{
         },
         setMaxPrice:(price)=>{
             dispatch(setMaxPriceAC(price))
+        },
+        setCurrentPage:(data)=>{
+            dispatch(setCurrentPageAC(data))
         }
     }
 }

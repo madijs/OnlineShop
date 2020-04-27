@@ -81,7 +81,7 @@ const Login = (props) => {
         Axios.post(path+'/token', data).then(res => {
             console.log(res.data.access);
             var decoded = jwt_decode(res.data.access);
-            console.log(decoded)
+            console.log(decoded);
             localStorage.setItem('token', res.data.access);
             localStorage.setItem('count',decoded.count);
             props.setCartCount(localStorage.getItem('count'))

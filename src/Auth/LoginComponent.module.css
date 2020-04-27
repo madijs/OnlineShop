@@ -1,0 +1,194 @@
+@media (max-width: 1024px) {
+    .login_form {
+        font-size: 10px !important;
+        width: 90%;
+        padding: 6px 10px !important;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc !important;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+    }
+    .login_buttons{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+    }
+    .label1{
+        font-size: 10px !important;
+        left: 5%;
+        bottom: 25%;
+        letter-spacing: 1px;
+    }
+    .label2{
+        font-size: 10px !important;
+        right: 5%;
+        bottom: 25%;
+        letter-spacing: 1px;
+    }
+    .sign_in_button{
+        padding: 2px 20px !important;
+        font-size: 10px !important;
+    }
+    .reset_pass_button{
+        font-size: 7px !important;
+    }
+}
+@media (max-width: 600px) {
+    .login_form {
+        font-size: 7px !important;
+        width: 90%;
+        padding: 6px 10px !important;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc !important;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+    }
+    .label1{
+        font-size: 7px !important;
+        left: 5%;
+        bottom: 25%;
+        letter-spacing: 1px;
+    }
+    .label2{
+        font-size: 7px !important;
+        right: 5%;
+        bottom: 25%;
+        letter-spacing: 1px;
+    }
+    .login_buttons{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+    }
+    .sign_in_button{
+        padding: 1px 10px !important;
+        font-size: 7px !important;
+    }
+    .reset_pass_button{
+        font-size: 4px !important;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .label1{
+        font-size: 4px !important;
+        left: 5%;
+        bottom: 25%;
+        letter-spacing: 1px;
+    }
+    .label2{
+        font-size: 4px !important;
+        right: 5%;
+        bottom: 25%;
+        letter-spacing: 1px;
+    }
+    .login_buttons{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0% !important;
+    }
+    .sign_in_button{
+        margin: auto;
+        padding: 1px 10px !important;
+        font-size: 5px !important;
+    }
+    .reset_pass_button{
+        font-size: 3px !important;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
+
+.login_form_container{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 20%;
+    padding-bottom: 2%;
+}
+.login_form_label{
+    position: relative;
+    padding: 7%;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #EAEAEA;
+}
+.label1{
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    left: 5%;
+    bottom: 25%;
+    letter-spacing: 1px;
+}
+.label2{
+    color: #00AEC8;
+    letter-spacing: 1px;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    bottom: 25%;
+}
+.login_form {
+    font-size: 14px;
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.login_form:focus {
+    border: 1px solid red;
+}
+.login_buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%;
+}
+.sign_in_button_div{
+
+}
+.sign_in_button{
+    cursor: pointer;
+    margin-left: 5%;
+    padding: 8px 50px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    background-color: #00AEC8;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 17px;
+}
+.sign_in_button:focus{
+    outline: none;
+}
+
+.reset_pass_button{
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #00AEC8;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-right: 5%;
+}
