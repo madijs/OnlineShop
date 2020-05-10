@@ -1,11 +1,13 @@
 const SET_PRODUCTDETAILS_DATA = "SET-PRODUCTDETAILS-DATA";
 const SET_CATEGORY_DATA = "SET-CATEGORY-DATA";
+const SET_COMMENTS_DATA="SET-COMMENTS-DATA";
 
 let initialState = {
     productDetailsData:[],
     categoryData:{},
     delimetrPrice:'',
-    oldDelimetrPrice:''
+    oldDelimetrPrice:'',
+    commentsData:[]
 };
 
 const productDetailsReducer = (state=initialState,action)=>{
@@ -25,6 +27,11 @@ const productDetailsReducer = (state=initialState,action)=>{
             console.log(stateCopy);
             return stateCopy;
         }
+        case SET_COMMENTS_DATA:{
+            let stateCopy={...state};
+            stateCopy.commentsData=action.data;
+            return stateCopy;
+        }
         default:
             return state
     }
@@ -32,5 +39,5 @@ const productDetailsReducer = (state=initialState,action)=>{
 
 export const setProductDetailsActionCreator=(data)=>({type:SET_PRODUCTDETAILS_DATA,data:data});
 export const setProductCategoryActionCreator=(data)=>({type:SET_CATEGORY_DATA,data:data});
-
+export const setCommentsDataActionCreator=(data)=>({type:SET_COMMENTS_DATA,data:data});
 export default productDetailsReducer

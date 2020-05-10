@@ -61,10 +61,6 @@ function VerticalTabs(props) {
     const [value, setValue] = React.useState(0);
     const history = useHistory()
     useEffect( ()=>{
-        Axios.get("http://35.158.179.102/api/kato/").then(res=>{
-            console.log(res.data)
-        })
-
         Axios(path+"/product?page_size=10").then(res=>{
             console.log("gogogo");
             console.log(res.data);

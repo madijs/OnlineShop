@@ -1,4 +1,104 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@media (max-width: 1024px) {
+    .text1div{
+        width: 100%;
+        text-align:left;
+        background-color:#00AEC8;
+        height: 130px !important;
+        position: absolute;
+        margin-top: 3%;
+        font-family: 'Roboto', sans-serif;
+        padding-top: 20px;
+    }
+    .text{
+        font-family: Montserrat;
+        font-weight: bold;
+        color: white;
+        font-size: 1.5rem;
+        margin-left: 17% !important;
+        padding-bottom: 10px;
+    }
+    .sliderDiv{
+        margin-left:12.2%;
+        margin-right:12.2%;
+        margin-top:10% !important;
+    }
+}
+@media (max-width: 900px) {
+    .text1div{
+        height: 100px !important;
+    }
+    .text{
+        font-family: Montserrat;
+        font-weight: bold;
+        color: white;
+        font-size: 1.5rem;
+        margin-left: 11% !important;
+        padding-bottom: 10px;
+    }
+    .sliderDiv{
+        margin-left:6.2% !important;
+        margin-right:6.2% !important;
+        margin-top:8%;
+    }
+}
+@media (max-width: 700px) {
+    .text1div{
+        height: 100px !important;
+    }
+    .text{
+        font-family: Montserrat;
+        font-weight: bold;
+        color: white;
+        font-size: 1.5rem;
+        margin-left: 12% !important;
+        padding-bottom: 10px;
+    }
+    .sliderDiv{
+        margin-left:6.2% !important;
+        margin-right:6.2% !important;
+        margin-top:12% !important;
+    }
+}
+@media (max-width: 600px) {
+    .text1div{
+        height: 100px !important;
+    }
+    .text{
+        font-family: Montserrat;
+        font-weight: bold;
+        color: white;
+        font-size: 1.5rem;
+        margin-left: 14% !important;
+        padding-bottom: 10px;
+    }
+    .sliderDiv{
+        margin-left:6.2% !important;
+        margin-right:6.2% !important;
+        margin-top:12% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .text1div{
+        height: 100px !important;
+    }
+    .text{
+        font-family: Montserrat;
+        font-weight: bold;
+        color: white;
+        font-size: 1.2rem !important;
+        margin-left: 15% !important;
+        padding-bottom: 10px;
+    }
+    .sliderDiv{
+        margin-left:6.2% !important;
+        margin-right:6.2% !important;
+        margin-top:18% !important;
+    }
+}
+
 .text1div{
     width: 100%;
     text-align:left;
@@ -15,4 +115,9 @@
     color: white;
     font-size: 1.5rem;
     margin-left: 15%;
+}
+.sliderDiv{
+    margin-left:12.2%;
+    margin-right:12.2%;
+    margin-top:8%;
 }

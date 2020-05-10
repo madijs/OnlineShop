@@ -14,8 +14,10 @@ let initialState = {
     currentCategory:'',
     pageArray:[],
     pageSize:2,
-    currentPage:2,
-    totalCount:0
+    currentPage:1,
+    totalCount:0,
+    next:null,
+    prev:null
 };
 
 const listReducer=(state=initialState,action)=>{
@@ -24,6 +26,8 @@ const listReducer=(state=initialState,action)=>{
             let stateCopy = {...state};
             stateCopy.pageArray=[];
             stateCopy.allProductsData=action.data;
+            stateCopy.next = action.data.next;
+            stateCopy.prev=action.data.previous;
             stateCopy.productsData=action.data.results;
             stateCopy.totalCount = action.data.count;
 

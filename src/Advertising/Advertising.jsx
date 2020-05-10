@@ -66,22 +66,22 @@ const Adversting = ()=>{
         ]
     }
     return(
-        <div style={{marginLeft:"15%",marginRight:"15%"}}>
+        <div className={style.advertisingDiv}>
             <Slider {...settings}>
                 <div>
                     <br/>
                     <p style={{display:"none"}}>1</p>
-                    <img style={{width:'100%',height:"500px"}} src={back1}/>
+                    <img className={style.advertisingImg} src={back1}/>
                 </div>
                 <div>
                     <br/>
-                    <p style={{display:"none"}}>2</p>
-                    <img style={{width:'100%',height:"500px"}} src={back2}/>
+                    <p style={{display:"none"}}>1</p>
+                    <img className={style.advertisingImg} src={back1}/>
                 </div>
                 <div>
                     <br/>
-                    <p style={{display:"none"}}>3</p>
-                    <img style={{width:'100%',height:"500px"}} src={back3}/>
+                    <p style={{display:"none"}}>1</p>
+                    <img className={style.advertisingImg} src={back1}/>
                 </div>
             </Slider>
         </div>

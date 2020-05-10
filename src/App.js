@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useParams} from "react-router";
 import './App.css';
-import { Route } from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
 import Footer from "./Footer/Footer";
 import BasketContainer from "./Basket/BasketContainer";
 import MainPageContainer from "./MainPage/MainPageContainer";
@@ -24,11 +24,17 @@ function App(props) {
           console.log(match);
           return <ProductsContainer/>
       }} />
-      <Route exact path="/products/:categorySlug"  render={({match,location})=> {
-          console.log(match);
-          console.log(location.search);
-          return <ListOfProductContainer location={location.search}/>
-      }}/>
+      {/*<Route exact path="/products/:categorySlug"  render={({match,location})=> {*/}
+      {/*    console.log(match);*/}
+      {/*    console.log(location.search);*/}
+      {/*    return <ListOfProductContainer match={match} location={location.search}/>*/}
+      {/*}}/>*/}
+        <Route exact path="/products/:categorySlug?/:ordering?"  render={({match,location})=> {
+            console.log(match);
+            console.log(location.search);
+            return <ListOfProductContainer match={match} location={location.search}/>
+        }}/>
+
       <Route exact path="/userDetails" render={()=><User/>}/>
       <Route path="/admin" render={()=><Paperbase/>}/>
       <Footer/>

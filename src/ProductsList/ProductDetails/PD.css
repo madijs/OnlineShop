@@ -458,3 +458,67 @@
     font-size: 0.8rem;
     font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
 }
+.textarea{
+    width: 90%;
+    margin-top: 2%;
+    font-size: 18px;
+    font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;
+}
+.comment_but_divs{
+    display: flex;
+    margin-left: 78%;
+}
+.comment_but_div1{
+    margin-right: 5%;
+}
+.comment_but1{
+    padding: 10px;
+    background-color: #00AEC8;
+    color: white;
+    font-family: Montserrat;
+    font-size: 14px;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+}
+.comment_but_div2{
+    margin-left: 5%;
+}
+.comment_but2{
+    font-weight: bold;
+    padding: 10px;
+    background-color: crimson;
+    color: white;
+    font-family: Montserrat;
+    font-size: 14px;
+    letter-spacing: 0.1rem;
+}
+.comment_div{
+    text-align: start;
+    border: 1px solid dimgrey;
+    background-color: white;
+    padding: 3% 4%;
+    margin-bottom: 4%;
+}
+.comment_email{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 17px;
+    color: #00AEC8;
+    margin-bottom: 0.5%;
+}
+.comment_body{
+    font-family: Roboto, sans-serif;
+    font-weight: lighter;
+    color: #707070;
+    font-size: 16px;
+}
+.comment_write_div{
+    position: -webkit-sticky;
+    position: sticky;
+    top:5%;
+    margin-left: 90%;
+    margin-bottom: 1%;
+}
+
+.comment_write_but{
+}

@@ -10,6 +10,18 @@
 }
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@media (max-width: 600px) {
+  .slick-prev{
+    margin-right: 10px;
+    margin-top: 110px !important;
+  }
+  .slick-next{
+    margin-left: 10px;
+    margin-top: 110px !important;
+  }
+}
+
 .App {
   text-align: center;
   background-color: #F5F5F5;

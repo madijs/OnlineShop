@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 .container{
-    height: 1000px;
+    height: 820px;
     display: grid;
     grid-template-columns: 5% 20% 70% 5%;
     margin-top: 2%;
@@ -8,6 +8,7 @@
 .container2{
     display: grid;
     grid-template-columns: 33% 33% 33%;
+    grid-auto-rows: 33%;
 }
 .filter{
     border: 0.5px solid #ccc;
@@ -28,6 +29,8 @@
 .product:hover{
     margin-top: -10px;
     box-shadow: 1px 1px 6px 1px dimgrey;
+    position: absolute;
+    width: 23%;
 }
 .wetka{
     text-align: center;
@@ -111,7 +114,38 @@
     width: 30%;
 }
 .selectedPage{
-    color: red;
+    color: white;
+    background-color: #00AEC8;
+}
+.pagintar_div{
+    width: 40%;
+    padding: 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    margin-top: 2%;
+    height: 100%;
+    display: flex;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-evenly;
+}
+.pagintar_div div{
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}
+.pagintar_div div:hover{
+    color: #00AEC8;
+}
+.notActiv{
+    color: dimgrey;
+}
+.active_but{
+    color: #00AEC8;
 }
 /*.select{*/
 /*    background-color: #fff;*/

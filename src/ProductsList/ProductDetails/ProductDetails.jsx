@@ -1,6 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom';
 import { useParams} from "react-router";
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
 import BreadCrumb from "./BreadCrumb";
 import Axios from "axios";
 import path from "../../settings";
@@ -75,14 +77,15 @@ const useStyles = makeStyles(theme => ({
         marginRight: "8%",
         backgroundColor: "#fff",
         marginBottom:"5%",
-        height:"200px",
+        height:"auto",
     },
 }));
 
 export function NavTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
+    const[show2,setShow2] = useState(false);
+    const [commentsData,setComments]=useState([]);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -105,6 +108,50 @@ export function NavTabs(props) {
         width: '80%',
         marginLeft: 'auto',
         marginRight:'auto'
+    };
+    let nonFilter={
+        filter: 'none',
+        webkitFilter: 'none',
+        width:"100%",
+    };
+    const CommentsEditor=()=>{
+        const[comment,setComment]=useState('');
+        let commentBody=(e)=>{
+            setComment(e.target.value);
+        };
+        let postComment=()=>{
+            var data = {
+                'body':comment
+            };
+            console.log(localStorage.getItem('token'))
+            Axios.post(path+"/product/comment/?product=zubnyie-schetki-grendy-klassik-plyus-6",data,{headers:{
+                    'Authorization':'Baerer ' + localStorage.getItem('token')
+                }}).then(res=>{
+                    alert(res.data)
+            }).catch((err)=>{
+                console.log(err.response)
+            })
+        };
+        return(
+            <React.Fragment>
+                <textarea onChange={commentBody} className="textarea" id="subject" name="subject" placeholder="Введите что нибудь..." style={{height:"200px"}}></textarea>
+                <div className="comment_but_divs">
+                    <div className="comment_but_div2">
+                        <button onClick={()=>setShow2(false)} className="comment_but2">Назад</button>
+                    </div>
+                    <div className="comment_but_div1">
+                        <button onClick={postComment} className="comment_but1">Отправить</button>
+                    </div>
+                </div>
+            </React.Fragment>
+        )
+    };
+    const getComments=()=>{
+            Axios.get(path+"/product/comments/?product=zubnyie-schetki-grendy-klassik-plyus-6").then(res=>{
+                console.log("HELLLLLO")
+                setComments(res.data);
+                console.log(res.data)
+            })
     }
 
     return (
@@ -120,7 +167,7 @@ export function NavTabs(props) {
                 >
                     <LinkTab label="Описание" href="/drafts" {...a11yProps(0)} />
                     <LinkTab label="Характеристики" href="/trash" {...a11yProps(1)} />
-                    <LinkTab label="Отзывы" href="/spam" {...a11yProps(2)} />
+                    <LinkTab onClick={getComments} label="Отзывы" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -131,8 +178,29 @@ export function NavTabs(props) {
                 {specification_elements}
                 </div>
             </TabPanel>
-            <TabPanel value={value} index={2}>
-                Page Three
+            <TabPanel style={{backgroundColor:"#EBEBEB",overflow:"scroll",height:"400px",position:"relative"}} value={value} index={2}>
+
+                <div style={nonFilter}>
+                    {show2 ? <CommentsEditor/> : null }
+                </div>
+                { !show2 &&
+                    <div>
+                        <div className="comment_write_div">
+                            <Fab onClick={() => setShow2(true)} className="comment_write_but" color="secondary" aria-label="edit">
+                                <EditIcon/>
+                            </Fab>
+                        </div>
+                        {commentsData.map(el=>(
+                            <div className="comment_div">
+                                <div className="comment_email">{el.user}</div>
+                                <div className="comment_body">
+                                    {el.body}
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                }
             </TabPanel>
         </div>
     );
@@ -200,10 +268,12 @@ const ProductDetails=(props)=>{
     const[quantity,setQuantity]=useState('');
     const[show,setShow]=useState(false);
 
+
     const[skidka,setSkidka]=useState(0);
 
     let {productSlug} = useParams();
     const history = useHistory();
+
     useEffect(()=>{
         Axios.get(path + "/product/" + productSlug).then(res => {
             console.log(res.data);
@@ -244,7 +314,6 @@ const ProductDetails=(props)=>{
                 setStatus(true)
             }
         });
-
     },[]);
     let x = "";
     let y = "";
@@ -331,7 +400,7 @@ const ProductDetails=(props)=>{
         width: "20%",
         height:"20%",
         zIndex:1,
-    }
+    };
 
     return (
         <div>
@@ -414,7 +483,8 @@ const ProductDetails=(props)=>{
                 </div>
             </div>
             <NavTabs specification={props.productDetailsPage.productDetailsData.specification}
-                     description={props.productDetailsPage.productDetailsData.description}/>
+                     description={props.productDetailsPage.productDetailsData.description}
+            />
         </div>
         <Snackbar
             anchorOrigin={{vertical, horizontal}}

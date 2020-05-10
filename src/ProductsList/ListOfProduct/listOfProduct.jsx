@@ -1,4 +1,7 @@
 import React, {useEffect,Fragment} from "react";
+import {useHistory, Link, NavLink} from 'react-router-dom';
+import prev_but from "../../images/prev_but.png"
+import next_but from "../../images/next_but.png"
 import Axios from "axios";
 import path from "../../settings";
 import Item from "./Item";
@@ -40,14 +43,16 @@ const ListOfProduct = (props)=>{
         sort: '',
         name: 'hai',
     });
-    let {categorySlug} = useParams();
+    const[order,setOrder] = React.useState('title');
+    let {categorySlug,ordering} = useParams();
+    const history = useHistory();
     useEffect(()=>{
         console.log(categorySlug)
         Axios.get(path+'/product/?category='+categorySlug+
-            `&ordering=title&page=${props.listProductsPage.currentPage}&page_size=${props.listProductsPage.pageSize}`).then(res=>{
+            `&ordering=`+ordering+`&page=${props.listProductsPage.currentPage}&page_size=${props.listProductsPage.pageSize}`).then(res=>{
             console.log(res.data)
             props.addListOfProduct(res.data);
-        })
+        });
         console.log(props.listProductsPage.allProductsData);
     },[categorySlug]);
         let el = props.listProductsPage.productsData.map((el, index) => (
@@ -73,14 +78,23 @@ const ListOfProduct = (props)=>{
         }
     const handleChange = (event) => {
             if(event.target.value!="") {
-                console.log(event.target.value)
+                console.log(event.target.value);
+                var p = event.target.value
                 Axios.get(path + "/product/?category=" + categorySlug + "&ordering=" + event.target.value).then(res => {
-                    console.log(res.data)
+                    console.log(res.data);
+                    var searchParams = new URLSearchParams(window.location.search);
+                    searchParams.set("ordering", "-created");
+                    console.log(props.match);
+                    // props.match.params+='&ordering=-created';
+                    // console.log(history.location)
+                    history.push('/products/'+props.match.params.categorySlug+'/'+p);
+                    // console.log(history.location)
+                    setOrder(p);
                     props.setCurrentProducts(res.data)
                 })
             }
         const sort = event.target.name;
-        console.log(sort)
+        console.log(sort);
         setState({
             ...state,
             [sort]: event.target.value,
@@ -89,20 +103,45 @@ const ListOfProduct = (props)=>{
     const changeCurrentPage=(pageNumber)=>{
         props.setCurrentPage(pageNumber);
         Axios.get(path+'/product/?category='+categorySlug+
-            `&ordering=title&page=${pageNumber}&page_size=${props.listProductsPage.pageSize}`).then(res=>{
+            `&ordering=`+ordering+`&page=${pageNumber}&page_size=${props.listProductsPage.pageSize}`).then(res=>{
             console.log(res.data);
             props.addListOfProduct(res.data);
+        })
+    };
+    const next_page=()=>{
+        Axios.get(props.listProductsPage.next).then(res=>{
+            props.addListOfProduct(res.data);
+            let p = props.listProductsPage.currentPage;
+            p+=1;
+            props.setCurrentPage(p)
+        })
+    };
+
+    const previous_page=()=>{
+        Axios.get(props.listProductsPage.prev).then(res=>{
+            props.addListOfProduct(res.data);
+            let p = props.listProductsPage.currentPage;
+            p-=1;
+            props.setCurrentPage(p)
         })
     }
 
 
     return(
         <React.Fragment>
-            {props.listProductsPage.pageArray.map(p=>(
-                <button className={props.listProductsPage.currentPage===p && style.selectedPage} onClick={()=>{
-                    changeCurrentPage(p)
-                }} >{p}</button>
-            ))}
+            <div className={style.pagintar_div}>
+                <div className={props.listProductsPage.prev===null ? style.notActiv : style.active_but}
+                     onClick={previous_page}
+                >pr</div>
+                {props.listProductsPage.pageArray.map(p=>(
+                    <div className={props.listProductsPage.currentPage===p && style.selectedPage} onClick={()=>{
+                        changeCurrentPage(p)
+                    }} >{p}</div>
+                ))}
+                <div className={props.listProductsPage.next===null ? style.notActiv : style.active_but}
+                     onClick={next_page}
+                >ne</div>
+            </div>
         <div className={style.container}>
             <div></div>
             <div className={style.container1}>
@@ -148,6 +187,11 @@ const ListOfProduct = (props)=>{
             </div>
             <div className={style.container2}>
             {el}
+                <div style={{border:"1px solid dimgrey"}}></div>
+                <div style={{border:"1px solid dimgrey"}}></div>
+                <div style={{border:"1px solid dimgrey"}}></div>
+                <div style={{border:"1px solid dimgrey"}}></div>
+
             </div>
             <div></div>
         </div>

@@ -79,7 +79,7 @@ const ProductsList = (props)=>{
     return(
     <React.Fragment>
         <div className={style.text1div}><span className={style.text}>Популярные товары</span></div>
-        <div style={{marginLeft:"12.2%",marginRight:"12.2%",marginTop:"8%"}}>
+        <div className={style.sliderDiv}>
             <Slider style={{paddingRight:'2px'}} {...settings}>
                   {products_elements}
             </Slider>

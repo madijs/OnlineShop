@@ -1,7 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import ProductDetails from "./ProductDetails/ProductDetails";
-import {setProductCategoryActionCreator, setProductDetailsActionCreator} from "../redux/productDetails-reducer";
+import {
+    setCommentsDataActionCreator,
+    setProductCategoryActionCreator,
+    setProductDetailsActionCreator
+} from "../redux/productDetails-reducer";
 import {cartCounterActionCreator} from "../redux/users-reducer";
 
 let mapStateToProps = (state) =>{
@@ -21,6 +25,9 @@ let mapDispatchToProps=(dispatch)=>{
         },
         setProductCategory:(data)=>{
             dispatch(setProductCategoryActionCreator(data))
+        },
+        setCommentsData:(data)=>{
+            dispatch(setCommentsDataActionCreator(data))
         }
     }
 };
