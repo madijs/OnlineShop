@@ -54,6 +54,13 @@
         padding-bottom: 40px !important;
     }
 }
+@media (max-width: 480px) {
+    .product:hover{
+        z-index: 99;
+        box-shadow: 1px 1px 6px 1px dimgrey;
+        padding-bottom: 50px !important;
+    }
+}
 
 .product{
     position: relative;
