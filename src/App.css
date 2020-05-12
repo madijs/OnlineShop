@@ -106,4 +106,7 @@
   background-color: transparent;
   opacity: 0.25;
 }
+.MuiPaper-root .MuiAppBar-root .MuiAppBar-positionStatic .MuiAppBar-colorPrimary .MuiAppBar-colorPrimary .MuiPaper-elevation4{
+  background-color: #ccc;
+}
 

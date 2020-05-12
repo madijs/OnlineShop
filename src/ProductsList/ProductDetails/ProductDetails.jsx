@@ -53,8 +53,11 @@ function a11yProps(index) {
 
 const StyledTab = withStyles({
     selected:{
-        backgroundColor:"#00AEC8",
+        backgroundColor:"#00AEC8 !important",
         color:"#fff"
+    },
+    root:{
+        backgroundColor:"#fff",
     }
 })(Tab);
 
@@ -173,6 +176,7 @@ export function NavTabs(props) {
                     variant="fullWidth"
                     value={value}
                     onChange={handleChange}
+                    indicatorColor={"transparent"}
                     aria-label="nav tabs example"
                 >
                     <LinkTab label="Описание" href="/drafts" {...a11yProps(0)} />
