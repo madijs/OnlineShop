@@ -93,10 +93,10 @@ const Basket =(props)=>{
             <div className={style.basket_list}>
             <div className={style.basketText}>Корзина</div>
             <div className={style.titles}>
-                <div>Название</div>
-                <div>Цена за коробку</div>
-                <div>Кол-во коробок</div>
-                <div>Сумма</div>
+                <div style={{marginLeft:"7%"}}>Название</div>
+                <div style={{marginLeft:"10%"}}>Цена за коробку</div>
+                <div style={{marginLeft:"9%"}}>Кол-во коробок</div>
+                <div style={{marginLeft:"12%"}}>Сумма</div>
             </div>
         <div>
             {basket_items}

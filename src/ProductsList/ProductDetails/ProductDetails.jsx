@@ -57,7 +57,8 @@ const StyledTab = withStyles({
         color:"#fff"
     },
     root:{
-        backgroundColor:"#fff",
+        fontWeight:"bold",
+        backgroundColor:"#b1e0e8"
     }
 })(Tab);
 
@@ -179,9 +180,9 @@ export function NavTabs(props) {
                     indicatorColor={"transparent"}
                     aria-label="nav tabs example"
                 >
-                    <LinkTab label="Описание" href="/drafts" {...a11yProps(0)} />
-                    <LinkTab label="Характеристики" href="/trash" {...a11yProps(1)} />
-                    <LinkTab onClick={getComments} label="Отзывы" {...a11yProps(2)} />
+                    <LinkTab style={{backgroundColor:"#b1e0e8",color:""}} label="Описание" href="/drafts" {...a11yProps(0)} />
+                    <LinkTab style={{backgroundColor:"#b1e0e8"}} label="Характеристики" href="/trash" {...a11yProps(1)} />
+                    <LinkTab style={{backgroundColor:"#b1e0e8"}} onClick={getComments} label="Отзывы" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>

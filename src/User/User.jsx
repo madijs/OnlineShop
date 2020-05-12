@@ -148,7 +148,7 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         backgroundColor: 'theme.palette.background.paper',
         display: 'flex',
-        height: 550,
+        height: 670,
 
     },
     tabs: {
