@@ -1,10 +1,9 @@
 import React from "react";
 import style from './Oplata.module.css'
 import CheckItems from "./CheckItems";
+import media from "../../media";
 
 const Check =(props)=>{
-    const media="http://178.62.252.32";
-
     let check_items = props.basketPage.basketData.map((el,index)=>(
         <CheckItems
             id={el.product.id}
@@ -27,7 +26,7 @@ const Check =(props)=>{
             {check_items}
         </div>
             <div>
-                {props.basketPage.summa}
+                Итого: {props.basketPage.summa}
             </div>
         </div>
     )

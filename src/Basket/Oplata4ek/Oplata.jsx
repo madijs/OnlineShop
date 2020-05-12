@@ -8,6 +8,8 @@ import Select from '@material-ui/core/Select';
 import Check from "./Check";
 import exitIcon from "../../images/exit.png"
 import { useHistory } from 'react-router-dom';
+import Axios from "axios";
+import path from "../../settings";
 
 
 
@@ -31,6 +33,8 @@ const Oplata=(props)=>{
     const [state, setState] = React.useState({
         region:''
     });
+    const[region,setRegion] = React.useState('');
+    const[adress,setAdress]=React.useState('');
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -42,9 +46,30 @@ const Oplata=(props)=>{
             ...state,
             [name]: event.target.value,
         });
-        let data = {
-            'region': event.target.value
-        };
+        setRegion(event.target.value)
+    };
+
+    const setAdressChange=(e)=>{
+        setAdress(e.target.value)
+    };
+
+    const paymentOrder=()=>{
+        if(localStorage.getItem('token')) {
+            var data = {
+                'address': adress,
+                'city': region
+            };
+            console.log(data)
+            Axios.post(path + '/order/', data, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(res => {
+                window.location = res.data.payment_page_url
+            })
+        }else {
+            history.push('/login')
+        }
     };
 
     const history = useHistory();
@@ -53,7 +78,7 @@ const Oplata=(props)=>{
     return(
         <div className={style.container}>
             <div onClick={()=>{
-                history.push('/')
+                history.push('/');
             }} className={style.exit}><img className={style.exitImg} src={exitIcon}/></div>
             <div className={style.www}>
                  <div className={style.oplatatext}>Оплата</div>
@@ -73,17 +98,20 @@ const Oplata=(props)=>{
                                  }}
                              >
                                  <option value="" />
-                                 <option value={1}>Актобе</option>
-                                 <option value={2}>Алматы</option>
-                             </Select>
+                                 {props.basketPage.regionsData.map(el=>(
+                                     <option value={el.id}>{el.title}</option>
+                                     ))
+                                 }
+                             </Select
+>
                          </FormControl>
                      </div>
                 <div>
                     <form className={classes.root} noValidate autoComplete="off">
-                        <TextField id="outlined-basic" label="Улица" variant="outlined" />
-                        <TextField id="outlined-basic" label="Телефон" variant="outlined" />
+                        <TextField onChange={setAdressChange} id="outlined-basic" label="Адрес" variant="outlined" />
                     </form>
                 </div>
+                <div><button onClick={paymentOrder} className={style.oplataButton}>Оплатить</button></div>
             </div>
             <div className={style.sss}>
                 <Check basketPage={props.basketPage}/>

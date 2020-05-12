@@ -83,6 +83,8 @@ const useStyles = makeStyles(theme => ({
 
 export function NavTabs(props) {
     const classes = useStyles();
+    let history = useHistory();
+    let {productSlug} = useParams();
     const [value, setValue] = React.useState(0);
     const[show2,setShow2] = useState(false);
     const [commentsData,setComments]=useState([]);
@@ -123,12 +125,21 @@ export function NavTabs(props) {
             var data = {
                 'body':comment
             };
+            let fakedata={
+                'user':localStorage.getItem('email'),
+                'body':comment
+            }
+
             console.log(localStorage.getItem('token'))
-            Axios.post(path+"/product/comment/?product=zubnyie-schetki-grendy-klassik-plyus-6",data,{headers:{
-                    'Authorization':'Baerer ' + localStorage.getItem('token')
+            Axios.post(path+"/product/comment/?product="+productSlug,data,{headers:{
+                    'Authorization':'Bearer ' + localStorage.getItem('token')
                 }}).then(res=>{
-                    alert(res.data)
+                    console.log(res.data)
+                    commentsData.push(fakedata)
+                setShow2(false)
             }).catch((err)=>{
+                alert("Вы не авторизованы!");
+                history.push('/login');
                 console.log(err.response)
             })
         };
@@ -147,7 +158,7 @@ export function NavTabs(props) {
         )
     };
     const getComments=()=>{
-            Axios.get(path+"/product/comments/?product=zubnyie-schetki-grendy-klassik-plyus-6").then(res=>{
+            Axios.get(path+"/product/comments/?product="+productSlug).then(res=>{
                 console.log("HELLLLLO")
                 setComments(res.data);
                 console.log(res.data)
@@ -161,7 +172,6 @@ export function NavTabs(props) {
                     className="MuiTabs-flexContainer"
                     variant="fullWidth"
                     value={value}
-
                     onChange={handleChange}
                     aria-label="nav tabs example"
                 >
@@ -191,11 +201,19 @@ export function NavTabs(props) {
                             </Fab>
                         </div>
                         {commentsData.map(el=>(
-                            <div className="comment_div">
-                                <div className="comment_email">{el.user}</div>
-                                <div className="comment_body">
-                                    {el.body}
-                                </div>
+                            <div style={{marginBottom: "3%"}}>
+                                <div className="comment_div">
+                                     <div className="comment_email">{el.user}</div>
+                                     <div className="comment_body">
+                                         {el.body}
+                                     </div>
+                            </div>
+                                {el.answer &&
+                                    <div className="admin_commit">
+                                        <div className="admin_title">Optovichok</div>
+                                        <div className="admin_commits_body">{el.answer}</div>
+                                    </div>
+                                }
                             </div>
                         ))}
 
@@ -333,7 +351,7 @@ const ProductDetails=(props)=>{
             console.log(e.target.value);
             let kol_vo_box = e.target.value;
             if (kol_vo_box > props.productDetailsPage.productDetailsData.quantity) {
-                prompt('Нету столько ты чего)')
+                alert('Нету столько ты чего)')
             }
             let kol_vo_el = kol_vo_box * props.productDetailsPage.productDetailsData.box_quantity;
             let summa = kol_vo_el * props.productDetailsPage.productDetailsData.price;
@@ -358,12 +376,12 @@ const ProductDetails=(props)=>{
             if (quantity != 0) {
                 Axios.post(path + '/cart/', data, {
                     headers: {
-                        'Authorization': 'Baerer ' + localStorage.getItem('token')
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
                     }
                 }).then(res=>{
                     Axios.get(path+'/cart/count/',{
                         headers: {
-                            'Authorization': 'Baerer ' + localStorage.getItem('token')
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     }).then(res=>{
                         props.setCartCount(res.data.count)

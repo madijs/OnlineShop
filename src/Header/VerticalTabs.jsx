@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import { useHistory } from 'react-router-dom';
+import style from "./VerticalTabs.module.css";
 import Axios from "axios"
 import path from "../settings";
 import Typography from "@material-ui/core/Typography";
@@ -122,6 +123,7 @@ function VerticalTabs(props) {
                 ))}
 
             </Tabs>
+            <div style={{overflow:"scroll",display:"flex"}}>
             {props.currentSubCategory.map((el,index)=>(
                 el.child.map(el=>(
                     <TabPanel value={value} index={index}>
@@ -134,6 +136,7 @@ function VerticalTabs(props) {
                     </TabPanel>
                 ))
             ))}
+            </div>
         </div>
     );
 }

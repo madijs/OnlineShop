@@ -132,7 +132,7 @@ const ListOfProduct = (props)=>{
             <div className={style.pagintar_div}>
                 <div className={props.listProductsPage.prev===null ? style.notActiv : style.active_but}
                      onClick={previous_page}
-                >pr</div>
+                >Назад</div>
                 {props.listProductsPage.pageArray.map(p=>(
                     <div className={props.listProductsPage.currentPage===p && style.selectedPage} onClick={()=>{
                         changeCurrentPage(p)
@@ -140,7 +140,7 @@ const ListOfProduct = (props)=>{
                 ))}
                 <div className={props.listProductsPage.next===null ? style.notActiv : style.active_but}
                      onClick={next_page}
-                >ne</div>
+                >Дальше</div>
             </div>
         <div className={style.container}>
             <div></div>
@@ -187,11 +187,6 @@ const ListOfProduct = (props)=>{
             </div>
             <div className={style.container2}>
             {el}
-                <div style={{border:"1px solid dimgrey"}}></div>
-                <div style={{border:"1px solid dimgrey"}}></div>
-                <div style={{border:"1px solid dimgrey"}}></div>
-                <div style={{border:"1px solid dimgrey"}}></div>
-
             </div>
             <div></div>
         </div>

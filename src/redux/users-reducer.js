@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { useHistory } from 'react-router-dom';
 import path from "../settings";
 
 const SIGN_UP_DATA_BIRTHDATE='SIGN-UP-DATA-BIRTHDATE';
@@ -31,8 +32,11 @@ const usersReducer = (state=initialState,action)=>{
         case SIGN_UP_DATA:
             state.signUpform=action.data;
             console.log(state.signUpform);
-            Axios.post(path+'/auth/users/', state.signUpform).then(res => {
+            Axios.post('https://api.jussupov.me/register', state.signUpform).then(res => {
                 console.log(res.data);
+                alert('Спасибо за регистрацию!Вам на '+state.signUpform.email+
+                    " отправлено сообщение!Перейдите по ссылке чтобы подтвердить почту!")
+                window.location = 'http://localhost:3000/login'
                 // localStorage.setItem('token', res.data.key);
             }).catch((err) => {
                 console.log(err.response)

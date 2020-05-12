@@ -494,10 +494,8 @@
 }
 .comment_div{
     text-align: start;
-    border: 1px solid dimgrey;
     background-color: white;
     padding: 3% 4%;
-    margin-bottom: 4%;
 }
 .comment_email{
     font-family: Montserrat;
@@ -517,8 +515,26 @@
     position: sticky;
     top:5%;
     margin-left: 90%;
-    margin-bottom: 1%;
+    margin-bottom: -4%;
 }
+.admin_commit{
+    background-color: #00AEC8;
+    color: white;
+    padding: 1% 2%;
 
-.comment_write_but{
+}
+.admin_title{
+    text-align: start;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 17px;
+    color: #fff;
+    margin-bottom: 0.5%;
+}
+.admin_commits_body{
+    text-align: start;
+    font-family: Roboto, sans-serif;
+    font-weight: lighter;
+    color: #fff;
+    font-size: 16px;
 }

@@ -12,10 +12,10 @@ const CheckItems = (props)=>{
                     {props.title}
                 </div>
                 <div>
-                    {props.price}
+                   Цена:{props.price}
                 </div>
                 <div>
-                    {props.quantity}
+                   Количество: {props.quantity}
                 </div>
             </div>
         </div>

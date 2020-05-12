@@ -2,12 +2,13 @@ const ADD_TO_BASKET = 'ADD-TO-BASKET';
 const ADD_SUMMA = 'ADD-SUMMA';
 const REMOVE_SUMMA='REMOVE-SUMMA';
 const CHANGE_QUANTITY='CHANGE-QUANTITY';
-const REMOVE_FROM_BASKET='REMOVE-FROM-BASKET'
+const SET_REGIONS='SET-REGIONS';
 
 let initialState={
     basketData:[],
     quantity:[],
-    summa:0
+    summa:0,
+    regionsData:[]
 }
 
 const basketReducer=(state=initialState,action)=>{
@@ -28,19 +29,6 @@ const basketReducer=(state=initialState,action)=>{
             console.log(state.quantity);
             return state;
         }
-        // case REMOVE_FROM_BASKET:{
-        //    // let stateCopy = {...state};
-        //     console.log(action.id)
-        //         let data=[];
-        //         for(let i=0;i<state.basketData.length;i++){
-        //             if (state.basketData[i].id != action.id) {
-        //                 data.push(state.basketData[i])
-        //             }
-        //         }
-        //         console.log(data);
-        //     state.basketData = data;
-        //     return state
-        // }
         case ADD_SUMMA: {
             let stateCopy = {...state};
             stateCopy.summa = stateCopy.summa + action.data;
@@ -81,6 +69,11 @@ const basketReducer=(state=initialState,action)=>{
                 })
             }
         }
+        case SET_REGIONS:{
+            let stateCopy = {...state};
+            stateCopy.regionsData=action.data;
+            return stateCopy;
+        }
         default:
             return state
     }
@@ -90,7 +83,7 @@ export const AddToBasketActionCreator = (data)=>({type:ADD_TO_BASKET,data:data})
 export const AddSummaActionCreator = (data)=>({type:ADD_SUMMA,data:data});
 export const RemoveSummaActionCreator = (data)=>({type:REMOVE_SUMMA,data:data});
 export const ChangeQuantityActionCreator=(id,quantity)=>({type:CHANGE_QUANTITY,id:id,quantity:quantity});
-export const RemoveItemFromBasketActionCreator=(id)=>({type:REMOVE_FROM_BASKET,id:id});
+export const SetRegionsActionCreator = (data)=>({type:SET_REGIONS,data:data});
 
 
 export default basketReducer;

@@ -13,7 +13,7 @@ const Basket =(props)=>{
         if(localStorage.getItem('token')){
         Axios.get(path+'/cart/',
             {headers:{
-                    'Authorization':'Baerer ' + localStorage.getItem('token')
+                    'Authorization':'Bearer ' + localStorage.getItem('token')
                 }}).then(res=>{
             console.log(res.data);
             props.addToBasket(res.data);
@@ -63,17 +63,25 @@ const Basket =(props)=>{
     };
 
     let paymentOrder=()=>{
-        console.log(props.basketPage.quantity)
-        Axios.post(path+'/cart/bulk/',props.basketPage.quantity,{
-            headers:{
-                'Authorization': 'Baerer '+localStorage.getItem('token'),
-                'Content-Type': 'application/json'
-            }
-        }).then(res=>{
-            console.log(res.data)
-            // window.location = res.data.payment_page_url
-        })
-        setState(true);
+        if(localStorage.getItem('token')) {
+            console.log(props.basketPage.quantity)
+            Axios.post(path + '/cart/bulk/', props.basketPage.quantity, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => {
+                console.log(res.data)
+                Axios.get(path + '/city').then(res => {
+                    console.log(res.data);
+                    props.setRegions(res.data);
+                })
+                // window.location = res.data.payment_page_url
+            });
+            setState(true);
+        }else {
+            history.push('/login')
+        }
     };
 
     return(
@@ -108,7 +116,7 @@ const Basket =(props)=>{
             </div>
             <div className={style.btnList}>
                 <div><button onClick={paymentOrder} className={style.oplataButton}>Оплатить</button></div>
-                <div><button className={style.continueBtn}>Продолжить покупки</button></div>
+                <div><button onClick={()=>history.push('/')} className={style.continueBtn}>Продолжить покупки</button></div>
             </div>
         </div>
         </div>

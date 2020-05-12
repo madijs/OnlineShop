@@ -4,7 +4,7 @@ import {
     AddSummaActionCreator,
     AddToBasketActionCreator,
     ChangeQuantityActionCreator, RemoveItemFromBasketActionCreator,
-    RemoveSummaActionCreator
+    RemoveSummaActionCreator, SetRegionsActionCreator
 } from "../redux/basket-reducer";
 import Basket from "./Basket";
 import {cartCounterActionCreator} from "../redux/users-reducer";
@@ -40,6 +40,9 @@ let mapDispatchToProps=(dispatch)=>{
         },
         changeQuantity:(id,quantity)=>{
             dispatch(ChangeQuantityActionCreator(id,quantity))
+        },
+        setRegions:(data)=>{
+            dispatch(SetRegionsActionCreator(data))
         }
     }
 }
